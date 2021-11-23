@@ -10,7 +10,14 @@ import java.awt.event.WindowListener;
 
 public class GameFrame extends JFrame implements WindowFocusListener {
 
-    public static final String DEF_TITLE = "Breakout Clone     space = start/pause   ←/→ = move left/right   esc = menu";
+    // this line is too long, so change it shows.
+    public static final String DEF_TITLE =      // title, but more like user guide
+            "Breakout Clone\t" +
+            "space = start/pause\t"+
+            "←/→ = move\t"+
+            "left/right\t"+
+            "esc = menu"
+    ;
     private GameBoard gameBoard;
     private boolean gaming;
 
@@ -24,6 +31,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.addWindowFocusListener(this);
     }
 
+    // To initialize the window
     public void initialize(){
         this.setTitle(DEF_TITLE);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -41,7 +49,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     @Override
     public void windowGainedFocus(WindowEvent windowEvent) {
-        // the first time the frame loses focus is because it has been disposed to install the GameBoard, so went it regains the focus it's ready to play. of course calling a method such as 'onLostFocus' is useful only if the GameBoard as been displayed at least once
+        // the first time the frame loses focus is because it has been disposed to install the GameBoard,
+        // so went it regains the focus it's ready to play.
+        // of course calling a method such as 'onLostFocus' is useful only if the GameBoard as been displayed at least once
         gaming = true;
     }
 
