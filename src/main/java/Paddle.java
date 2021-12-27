@@ -1,18 +1,17 @@
-//package code;
-
 import java.awt.*;
 
 
 public class Paddle {
 
-
+	// color of the paddle
 	public static final Color BORDER_COLOR = Color.GREEN.darker().darker();
 	public static final Color INNER_COLOR = Color.GREEN;
 
+	// default move distance per press
 	public static final int DEF_MOVE_AMOUNT = 5;
 
 	private Rectangle paddleFace;
-	private Point ballPoint;
+	private Point ballPoint;		// locate the ball on the paddle
 	private int moveAmount;
 	private int min;
 	private int max;

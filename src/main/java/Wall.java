@@ -1,13 +1,12 @@
-//package code;
-
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.Random;
 
 public class Wall {
 
-	public static final int LEVELS_COUNT = 4;
+	public static final int GAME_LEVELS_COUNT = 4;    // levels of the game, rename as: GAME_LEVELS_COUNT
 
+	// different level of walls
 	private static final int CLAY = 1;
 	private static final int STEEL = 2;
 	private static final int CEMENT = 3;
@@ -88,7 +87,7 @@ public class Wall {
 		for(double y = brickHgt;i < tmp.length;i++, y += 2*brickHgt){
 			double x = (brickOnLine * brickLen) - (brickLen / 2);
 			p.setLocation(x,y);
-			tmp[i] = new Brick2(p,brickSize);
+			tmp[i] = new Brick1(p,brickSize);
 		}
 		return tmp;
 
@@ -141,10 +140,10 @@ public class Wall {
 	}
 
 	public Brick[][] makeLevels(Rectangle drawArea,int brickCount,int lineCount,double brickDimensionRatio){
-		Brick[][] tmp = new Brick[LEVELS_COUNT][];
+		Brick[][] tmp = new Brick[GAME_LEVELS_COUNT][];
 		tmp[0] = makeSingleTypeLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY);
-		tmp[1] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY,CEMENT);
-		tmp[2] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY,STEEL);
+		tmp[1] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY,STEEL); // change the CEMENT to STEEL
+		tmp[2] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY,CEMENT); // change the STEEL to CEMENT
 		tmp[3] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,STEEL,CEMENT);
 		return tmp;
 	}
@@ -176,22 +175,26 @@ public class Wall {
 
 	public boolean impactWall(){
 		for(Brick b : bricks){
-			switch(b.findImpact(ball)) {
+			switch (b.findImpact(ball)) {
 				//Vertical Impact
-				case Brick.UP_IMPACT:
+				case Brick.UP_IMPACT -> {
 					ball.reverseY();
 					return b.setImpact(ball.down, Brick.Crack.UP);
-				case Brick.DOWN_IMPACT:
+				}
+				case Brick.DOWN_IMPACT -> {
 					ball.reverseY();
-					return b.setImpact(ball.up,Brick.Crack.DOWN);
+					return b.setImpact(ball.up, Brick.Crack.DOWN);
+				}
 
 				//Horizontal Impact
-				case Brick.LEFT_IMPACT:
+				case Brick.LEFT_IMPACT -> {
 					ball.reverseX();
-					return b.setImpact(ball.right,Brick.Crack.RIGHT);
-				case Brick.RIGHT_IMPACT:
+					return b.setImpact(ball.right, Brick.Crack.RIGHT);
+				}
+				case Brick.RIGHT_IMPACT -> {
 					ball.reverseX();
-					return b.setImpact(ball.left,Brick.Crack.LEFT);
+					return b.setImpact(ball.left, Brick.Crack.LEFT);
+				}
 			}
 		}
 		return false;
@@ -266,20 +269,12 @@ public class Wall {
 	}
 
 	public Brick makeBrick(Point point, Dimension size, int type){
-		Brick out;
-		switch(type){
-			case CLAY:
-				out = new Brick2(point,size);
-				break;
-			case STEEL:
-				out = new Brick3(point,size);
-				break;
-			case CEMENT:
-				out = new Brick1(point, size);
-				break;
-			default:
-				throw  new IllegalArgumentException(String.format("Unknown Type:%d\n",type));
-		}
+		Brick out = switch (type) {
+			case CLAY -> new Brick1(point, size);
+			case STEEL -> new Brick2(point, size);
+			case CEMENT -> new Brick3(point, size);
+			default -> throw new IllegalArgumentException(String.format("Unknown Type:%d\n", type));
+		};
 		return  out;
 	}
 

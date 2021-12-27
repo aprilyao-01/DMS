@@ -1,5 +1,3 @@
-//package code;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -52,8 +50,9 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
 
 		this.initialize();
-		message = "Press SPACE to start";
-		wall = new Wall(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),30,3,6/2,new Point(300,430));
+		message = "Press SPACE to start";	// message show on screen, user guide
+		wall = new Wall(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),
+				30,3,6/2,new Point(300,430));
 
 		debugConsole = new DebugConsole(owner,wall,this);
 		//initialize the first level
@@ -63,7 +62,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 			wall.move();
 			wall.findImpacts();
 			message = String.format("Bricks: %d Balls %d",wall.getBrickCount(),wall.getBallCount());
-			if(wall.isBallLost()){
+			if(wall.isBallLost()){		// all boll used
 				if(wall.ballEnd()){
 					wall.wallReset();
 					message = "Game over";
