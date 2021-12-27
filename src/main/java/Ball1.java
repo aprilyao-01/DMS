@@ -12,18 +12,19 @@ public class Ball1 extends Ball {
 	private static final Color DEF_INNER_COLOR = new Color(255, 219, 88);
 	private static final Color DEF_BORDER_COLOR = DEF_INNER_COLOR.darker().darker();
 
-
+	// radiusA = radiusB
 	public Ball1(Point2D center){
-		super(center,DEF_RADIUS,DEF_RADIUS,DEF_INNER_COLOR,DEF_BORDER_COLOR);
+		super(NAME,center,DEF_RADIUS,DEF_INNER_COLOR,DEF_BORDER_COLOR);
 	}
 
 
 	@Override
-	protected Shape makeBall(Point2D center, int radiusA, int radiusB) {
+	protected Shape makeBall(Point2D center, int radius) {
 
-		double x = center.getX() - (radiusA / 2);
-		double y = center.getY() - (radiusB / 2);
+		double half_ball = radius / 2.0;
+		double x = center.getX() - half_ball;
+		double y = center.getY() - half_ball;
 
-		return new Ellipse2D.Double(x,y,radiusA,radiusB);
+		return new Ellipse2D.Double(x,y,radius,radius);
 	}
 }

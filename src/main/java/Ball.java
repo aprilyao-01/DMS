@@ -19,7 +19,11 @@ abstract public class Ball {
 	private int speedX;
 	private int speedY;
 
-	public Ball(Point2D center,int radiusA,int radiusB,Color inner,Color border){
+	private String name;	// give ball a name
+
+	// it's a ball, assume it's a perfect sphere, with radiusA = radiusB = radius
+	public Ball(String name,Point2D center,int radius,Color inner,Color border){
+		this.name = name;
 		this.center = center;
 
 		up = new Point2D.Double();
@@ -27,21 +31,24 @@ abstract public class Ball {
 		left = new Point2D.Double();
 		right = new Point2D.Double();
 
-		up.setLocation(center.getX(),center.getY()-(radiusB / 2));
-		down.setLocation(center.getX(),center.getY()+(radiusB / 2));
+		// more clear variable names, avoiding magic number
+		double half_ball = radius / 2.0;
 
-		left.setLocation(center.getX()-(radiusA /2),center.getY());
-		right.setLocation(center.getX()+(radiusA /2),center.getY());
+		up.setLocation(center.getX(),center.getY()-half_ball);
+		down.setLocation(center.getX(),center.getY()+half_ball);
+
+		left.setLocation(center.getX()-half_ball,center.getY());
+		right.setLocation(center.getX()+half_ball,center.getY());
 
 
-		ballFace = makeBall(center,radiusA,radiusB);
+		ballFace = makeBall(center,radius);
 		this.border = border;
 		this.inner  = inner;
 		speedX = 0;
 		speedY = 0;
 	}
 
-	protected abstract Shape makeBall(Point2D center,int radiusA,int radiusB);
+	protected abstract Shape makeBall(Point2D center,int radius);
 
 	public void move(){
 		RectangularShape tmp = (RectangularShape) ballFace;
