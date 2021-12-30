@@ -1,0 +1,23 @@
+#menuTitle{
+    -fx-font-size: 20;
+    -fx-text-alignment: center;
+    -fx-text-fill: #6F6DBE;
+}
+
+
+
+
+.button{
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-text-fill: white;
+    -fx-background-color: #6F6DBE;
+    -fx-padding-left: 20pt;
+    -fx-padding-right: 20pt;
+    -fx-padding-top: 5pt;
+    -fx-padding-bottom: 5pt;
+    -fx-margin-top: 10pt;
+    -fx-font: 12pt "sans-serif";
+}
+
+
