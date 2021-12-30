@@ -1,6 +1,9 @@
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+
 
 /**
  * Class{@code MenuItem} is used to specify the basic properties
@@ -21,9 +24,13 @@ public class MenuItem extends Pane {
 	public MenuItem(String itemName) {
 
 		// create the button and set the style
+		int btn_height = PropertiesSetter.getItemY();
+		int btn_width = PropertiesSetter.getItemX();
 		getStylesheets().add("myStyle.css");
 		Button btn = new Button(itemName);
 		btn.getStyleClass().add("button");
+		btn.setPrefHeight(btn_height);
+		btn.setPrefWidth(btn_width);
 
 		// add to the pane
 		getChildren().add(btn);
@@ -36,6 +43,6 @@ public class MenuItem extends Pane {
 	 * @param action - action to be performed on when clicking the item
 	 */
 	public void setClick(Runnable action) {
-		setOnMouseClicked(e -> action.run());
+		setOnMouseClicked(event -> action.run());
 	}
 }

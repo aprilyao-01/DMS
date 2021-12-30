@@ -1,5 +1,3 @@
-import javafx.scene.paint.Color;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -27,10 +25,22 @@ public final class PropertiesSetter {
 
 	/* keys the setter needs to remember */
 
-	// menu configuration keys
-	private static final String USER_GUIDE = "user-guide";
+	// menu title configuration keys
+	private static final String MENU_TITLE = "menu-title";
 	private static final String MENU_TITLE_X = "menu-title-x";
 	private static final String MENU_TITLE_Y = "menu-title-y";
+
+
+	// menu VBox layout configuration keys
+	private static final String MENU_X = "menu-x";
+	private static final String MENU_Y = "menu-y";
+
+
+	// menu item configuration keys
+	private static final String USER_GUIDE = "user-guide";
+	private static final String ITEM_SPACE = "item-space";
+	private static final String ITEM_X = "item-x";
+	private static final String ITEM_Y = "item-y";
 
 
 	// game environment configuration keys
@@ -86,11 +96,31 @@ public final class PropertiesSetter {
 	/** @return the user guide of the game */
 	public static String getUserGuide() {return GAME_CONFIG.getProperty(USER_GUIDE);}
 
+	/** @return the string value of the menu title*/
+	public static String getMenuTitle(){return GAME_CONFIG.getProperty(MENU_TITLE);}
+
 	/** @return the set layout X value of the menu title*/
 	public static int getMenuTitleX(){return getIntegerProperty(MENU_TITLE_X);}
 
 	/** @return the set layout Y value of the menu title*/
 	public static int getMenuTitleY(){return getIntegerProperty(MENU_TITLE_Y);}
+
+
+	/** @return the set layout X value of the menu layout VBox*/
+	public static int getMenuX(){return getIntegerProperty(MENU_X);}
+
+	/** @return the set layout Y value of the menu layout VBox*/
+	public static int getMenuY(){return getIntegerProperty(MENU_Y);}
+
+
+	/** @return the space between each item*/
+	public static int getItemSpace(){return getIntegerProperty(ITEM_SPACE);}
+
+	/** @return the space between each item*/
+	public static int getItemX(){return getIntegerProperty(ITEM_X);}
+
+	/** @return the space between each item*/
+	public static int getItemY(){return getIntegerProperty(ITEM_Y);}
 
 	/** @return the height of the screen */
 	public static int getScreenHeight() {

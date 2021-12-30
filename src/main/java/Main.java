@@ -1,5 +1,6 @@
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -14,6 +15,7 @@ import java.util.List;
 public class Main extends Application {
 
 	/* main menu properties */
+	private final String GAME_TITLE = PropertiesSetter.getTitle();
 	private final int SCENE_HEIGHT = PropertiesSetter.getScreenHeight(); //
 	private final int SCENE_WIDTH = PropertiesSetter.getScreenWidth(); //
 	private final int POP_UP_WIDTH = PropertiesSetter.getPopUpWidth();
@@ -39,23 +41,31 @@ public class Main extends Application {
 		menuScene.setFill(Color.SILVER);
 		primaryStage.setScene(menuScene);
 		this.primaryStage = primaryStage;
-		primaryStage.setTitle(PropertiesSetter.getTitle());
+		primaryStage.setTitle(GAME_TITLE);
 		primaryStage.show();
 	}
 
-
+	/**{@code createMenu} add the menu title to the menuRoot,
+	 *  and cll the function{@code createMenuArea} to create menu items*/
 	public void createMenu() {
 		Pane title = createTitle();
 		VBox menuArea = createMenuArea();
 		menuRoot.getChildren().addAll(title, menuArea);
 	}
 
-
+	/** @return a VBox layout to contain all the menu items*/
 	private VBox createMenuArea() {
-		// todo: add items in the vbox or delete the vbox
+
+		// values defined in properties file
+		int ITEM_SPACE = PropertiesSetter.getItemSpace();		// 20
+		int MENU_X = PropertiesSetter.getMenuX();		//190
+		int MENU_Y = PropertiesSetter.getMenuY();		//100
+
 		VBox menu = new VBox();
-		menu.setTranslateX(SCENE_WIDTH / 2.0);
-		menu.setTranslateY(SCENE_HEIGHT / 2.0);
+		menu.setSpacing(ITEM_SPACE);	// spaces between each item
+		menu.setTranslateX(MENU_X);
+		menu.setTranslateY(MENU_Y);
+
 		for(Pair<String, Runnable> menuItem : menuItems) {
 			MenuItem item = new MenuItem(menuItem.getKey());
 			item.setClick(menuItem.getValue());
@@ -66,12 +76,18 @@ public class Main extends Application {
 
 
 	private Pane createTitle() {
-		Text title = new Text("WELCOME TO THE BREAKOUT GAME!");
+		String MENU_TITLE = PropertiesSetter.getMenuTitle();
+
+		int MENU_TITLE_X = PropertiesSetter.getMenuTitleX();
+		int MENU_TITLE_Y = PropertiesSetter.getMenuTitleY();
+
+		Text title = new Text(MENU_TITLE);
+		System.out.println(MENU_TITLE);
 		Pane container = new Pane();
 		container.getStylesheets().add("myStyle.css");
 		title.setId("menuTitle");
-		container.setTranslateX(PropertiesSetter.getMenuTitleX());
-		container.setTranslateY(PropertiesSetter.getMenuTitleY());
+		container.setTranslateX(MENU_TITLE_X);
+		container.setTranslateY(MENU_TITLE_Y);
 		container.getChildren().add(title);
 		return container;
 	}
