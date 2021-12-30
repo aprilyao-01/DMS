@@ -4,6 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Pair;
@@ -70,8 +71,9 @@ public class Main extends Application {
 		Pane container = new Pane();
 		container.getStylesheets().add("myStyle.css");
 		title.setId("menuTitle");
+//		title.setFont(Font.loadFont("file:resources/fonts/Adventure.ttf", 120));
 		container.getChildren().add(title);
-		container.setTranslateX(SCENE_WIDTH / 2 - title.getLayoutBounds().getWidth() / 2);
+		container.setTranslateX(20);
 		container.setTranslateY(SCENE_HEIGHT / 4);
 		return container;
 	}

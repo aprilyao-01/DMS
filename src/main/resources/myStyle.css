@@ -1,7 +1,14 @@
+@font-face{
+    src: url("fonts/Adventure.ttf");
+}
+
+
+
 #menuTitle{
-    -fx-font-size: 20;
-    -fx-text-alignment: center;
-    -fx-text-fill: #6F6DBE;
+    -fx-font-size: 25pt;
+    -fx-text-alignment: left;
+    -fx-fill: /*line-gradient(from*/#6F6DBE;
+    -fx-font-family:  "Adventure";
 }
 
 
@@ -12,12 +19,10 @@
     -fx-text-alignment: center;
     -fx-text-fill: white;
     -fx-background-color: #6F6DBE;
-    -fx-padding-left: 20pt;
-    -fx-padding-right: 20pt;
-    -fx-padding-top: 5pt;
-    -fx-padding-bottom: 5pt;
-    -fx-margin-top: 10pt;
-    -fx-font: 12pt "sans-serif";
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: #006464;
+    -fx-font: 15pt 'Adventure';
 }
 
 
