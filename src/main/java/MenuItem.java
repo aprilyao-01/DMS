@@ -1,6 +1,5 @@
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
 
 
 /**
@@ -12,9 +11,6 @@ import javafx.scene.text.Text;
 
 public class MenuItem extends Pane {
 
-	/** the text displayed over this menu item (its name) */
-    private Text itemText;
-
 	/**
 	 * Make an item (button) for placement in the main menu
 	 *
@@ -23,6 +19,8 @@ public class MenuItem extends Pane {
 
 	// Use the resource: https://docs.oracle.com/javase/8/javafx/api/javafx/scene/doc-files/cssref.html#labeled
 	public MenuItem(String itemName) {
+
+		// create the button and set the style
 		getStylesheets().add("myStyle.css");
 		Button btn = new Button(itemName);
 		btn.getStyleClass().add("button");
@@ -33,7 +31,7 @@ public class MenuItem extends Pane {
 	}
 
 	/**
-	 * Set the item's behavior upon clicking
+	 * Set the button's behavior upon clicking
 	 *
 	 * @param action - action to be performed on when clicking the item
 	 */

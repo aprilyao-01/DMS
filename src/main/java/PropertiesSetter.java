@@ -27,7 +27,10 @@ public final class PropertiesSetter {
 
 	/* keys the setter needs to remember */
 
+	// menu configuration keys
 	private static final String USER_GUIDE = "user-guide";
+	private static final String MENU_TITLE_X = "menu-title-x";
+	private static final String MENU_TITLE_Y = "menu-title-y";
 
 
 	// game environment configuration keys
@@ -72,7 +75,7 @@ public final class PropertiesSetter {
 
 	private static int getIntegerProperty(String key) {
 		String value = GAME_CONFIG.getProperty(key);
-		// if the key is not found, Properties will return null and we should return a
+		// if the key is not found, Properties will return null, and we should return a
 		// default value
 		if (value == null) {
 			return 0;
@@ -82,6 +85,12 @@ public final class PropertiesSetter {
 
 	/** @return the user guide of the game */
 	public static String getUserGuide() {return GAME_CONFIG.getProperty(USER_GUIDE);}
+
+	/** @return the set layout X value of the menu title*/
+	public static int getMenuTitleX(){return getIntegerProperty(MENU_TITLE_X);}
+
+	/** @return the set layout Y value of the menu title*/
+	public static int getMenuTitleY(){return getIntegerProperty(MENU_TITLE_Y);}
 
 	/** @return the height of the screen */
 	public static int getScreenHeight() {

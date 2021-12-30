@@ -4,7 +4,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Pair;
@@ -19,7 +18,6 @@ public class Main extends Application {
 	private final int SCENE_WIDTH = PropertiesSetter.getScreenWidth(); //
 	private final int POP_UP_WIDTH = PropertiesSetter.getPopUpWidth();
 	private final int POP_UP_HEIGHT = PropertiesSetter.getPopUpHeight();
-	private final Color MenuColor = Color.rgb(111, 109, 190);
 
 
 
@@ -54,9 +52,10 @@ public class Main extends Application {
 
 
 	private VBox createMenuArea() {
+		// todo: add items in the vbox or delete the vbox
 		VBox menu = new VBox();
-		menu.setTranslateX(SCENE_WIDTH / 2);
-		menu.setTranslateY(SCENE_HEIGHT / 2);
+		menu.setTranslateX(SCENE_WIDTH / 2.0);
+		menu.setTranslateY(SCENE_HEIGHT / 2.0);
 		for(Pair<String, Runnable> menuItem : menuItems) {
 			MenuItem item = new MenuItem(menuItem.getKey());
 			item.setClick(menuItem.getValue());
@@ -71,10 +70,9 @@ public class Main extends Application {
 		Pane container = new Pane();
 		container.getStylesheets().add("myStyle.css");
 		title.setId("menuTitle");
-//		title.setFont(Font.loadFont("file:resources/fonts/Adventure.ttf", 120));
+		container.setTranslateX(PropertiesSetter.getMenuTitleX());
+		container.setTranslateY(PropertiesSetter.getMenuTitleY());
 		container.getChildren().add(title);
-		container.setTranslateX(20);
-		container.setTranslateY(SCENE_HEIGHT / 4);
 		return container;
 	}
 
