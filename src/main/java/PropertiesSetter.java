@@ -39,8 +39,8 @@ public final class PropertiesSetter {
 	// menu item configuration keys
 	private static final String USER_GUIDE = "user-guide";
 	private static final String ITEM_SPACE = "item-space";
-	private static final String ITEM_X = "item-x";
-	private static final String ITEM_Y = "item-y";
+	private static final String ITEM_WIDTH = "item-width";
+	private static final String ITEM_HEIGHT = "item-height";
 
 
 	// game environment configuration keys
@@ -117,10 +117,10 @@ public final class PropertiesSetter {
 	public static int getItemSpace(){return getIntegerProperty(ITEM_SPACE);}
 
 	/** @return the space between each item*/
-	public static int getItemX(){return getIntegerProperty(ITEM_X);}
+	public static int getItemWidth(){return getIntegerProperty(ITEM_WIDTH);}
 
 	/** @return the space between each item*/
-	public static int getItemY(){return getIntegerProperty(ITEM_Y);}
+	public static int getItemHeight(){return getIntegerProperty(ITEM_HEIGHT);}
 
 	/** @return the height of the screen */
 	public static int getScreenHeight() {

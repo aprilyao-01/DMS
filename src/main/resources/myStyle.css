@@ -15,15 +15,15 @@
 
 
 .button{
-    -fx-alignment: center;
-    -fx-text-alignment: center;
+/*    -fx-alignment: center;
+    -fx-text-alignment: center;*/
     -fx-text-fill: white;
     -fx-background-color: #6F6DBE;
     -fx-background-radius: 5;
     -fx-border-radius: 5;
     -fx-border-color: #006464;
     -fx-font: 15pt 'Adventure';
-    -fx-padding: 10;
+/*    -fx-padding: 10;*/
 }
 
 

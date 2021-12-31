@@ -1,10 +1,10 @@
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Pair;
@@ -25,8 +25,9 @@ public class Main extends Application {
 
 	private final List<Pair<String, Runnable>> menuItems = Arrays.asList(
 			new Pair<String, Runnable>("START GAME", () -> initializeLevels()),
-			new Pair<String, Runnable>("HOW TO PLAY", () -> displayUserGuide()),
-			new Pair<String, Runnable>("SETTINGS", () -> displaySetting()),
+			new Pair<String, Runnable>("HOW TO PLAY", () -> showUserGuide()),
+			new Pair<String, Runnable>("SETTINGS", () -> showSetting()),
+			new Pair<String, Runnable>("HIGH SCORES", () -> showScores()),
 			new Pair<String, Runnable>("EXIT", Platform::exit));
 
 
@@ -45,7 +46,7 @@ public class Main extends Application {
 		primaryStage.show();
 	}
 
-	/**{@code createMenu} add the menu title to the menuRoot,
+	/**{@code createMenu} create the menu on the menuRoot,
 	 *  and cll the function{@code createMenuArea} to create menu items*/
 	public void createMenu() {
 		Pane title = createTitle();
@@ -59,30 +60,51 @@ public class Main extends Application {
 		// values defined in properties file
 		int ITEM_SPACE = PropertiesSetter.getItemSpace();		// 20
 		int MENU_X = PropertiesSetter.getMenuX();		//190
-		int MENU_Y = PropertiesSetter.getMenuY();		//100
+		int MENU_Y = PropertiesSetter.getMenuY();		//85
 
+		// create a VBox to lay out the menu items
 		VBox menu = new VBox();
 		menu.setSpacing(ITEM_SPACE);	// spaces between each item
 		menu.setTranslateX(MENU_X);
 		menu.setTranslateY(MENU_Y);
 
-		for(Pair<String, Runnable> menuItem : menuItems) {
+		menuItems.forEach(menuItem -> {
 			MenuItem item = new MenuItem(menuItem.getKey());
 			item.setClick(menuItem.getValue());
 			menu.getChildren().add(item);
-		}
+		});
+
+//		MenuItem menuItems[] = {
+//				new MenuItem("START GAME"),
+//				new MenuItem("HOW TO PLAY"),
+//				new MenuItem("SETTINGS"),
+//				new MenuItem("HIGH SCORES"),
+//		};
+//
+//		menuItems[0].setOnMouseClicked(e -> initializeLevels());
+//		menuItems[1].setOnMouseClicked(e -> showUserGuide());
+//		menuItems[2].setOnMouseClicked(e -> showSetting());
+//		menuItems[3].setOnMouseClicked(e -> showScores());
+//
+//		for(MenuItem item : menuItems){
+//			menu.getChildren().add(item);
+//		}
+
+
 		return menu;
 	}
 
-
+	/**{@code createTitle} add the menu title to the Pane,
+	 *  and return @return to add in the menuRoot*/
 	private Pane createTitle() {
-		String MENU_TITLE = PropertiesSetter.getMenuTitle();
 
+		// values defined in properties file
+		String MENU_TITLE = PropertiesSetter.getMenuTitle();
 		int MENU_TITLE_X = PropertiesSetter.getMenuTitleX();
 		int MENU_TITLE_Y = PropertiesSetter.getMenuTitleY();
 
+		// create title set the style and add to pane
 		Text title = new Text(MENU_TITLE);
-		System.out.println(MENU_TITLE);
 		Pane container = new Pane();
 		container.getStylesheets().add("myStyle.css");
 		title.setId("menuTitle");
@@ -93,14 +115,19 @@ public class Main extends Application {
 	}
 
 
-	private void displayUserGuide() {
+	private void showUserGuide() {
+		System.out.println("UG");
 		String UserGuide = PropertiesSetter.getUserGuide();
 		setUpDialogBox(UserGuide);
 	}
 
 
-	private void displaySetting() {
+	private void showSetting() {
 		//todo: color setting
+	}
+
+	private void showScores() {
+		//todo: high scores
 	}
 
 
