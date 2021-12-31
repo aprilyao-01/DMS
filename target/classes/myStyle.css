@@ -7,7 +7,7 @@
 #menuTitle{
     -fx-font-size: 25pt;
     -fx-text-alignment: left;
-    -fx-fill: /*line-gradient(from*/#6F6DBE;
+    -fx-fill: #6F6DBE;
     -fx-font-family:  "Adventure";
 }
 
@@ -22,7 +22,8 @@
     -fx-background-radius: 5;
     -fx-border-radius: 5;
     -fx-border-color: #006464;
-    -fx-font: 15pt 'Adventure';
+    -fx-font-size: 15pt;
+    -fx-font-family: 'Adventure';
     -fx-padding: 10;
 }
 

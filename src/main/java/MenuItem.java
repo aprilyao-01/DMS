@@ -10,26 +10,26 @@ import javafx.scene.control.Button;
 
 public class MenuItem extends Button {
 
+
+	// item preset properties
+	private static final int btn_width = PropertiesSetter.getItemWidth();	//200
+	private static final int btn_height = PropertiesSetter.getItemHeight();	//5
+
 	/**
 	 * Make an item (button) for placement in the main menu
+	 * use css style to the button
 	 *
-	 * @param itemName - the name of this button (e.g., "START GAME")
 	 */
 
 	// Use the resource: https://docs.oracle.com/javase/8/javafx/api/javafx/scene/doc-files/cssref.html#labeled
-	public MenuItem(String itemName) {
-
-		// item preset properties
-		int btn_width = PropertiesSetter.getItemWidth();	//200
-		int btn_height = PropertiesSetter.getItemHeight();	//5
+	public MenuItem() {
 
 		// create the button and set the style
+		Button btn = new Button();
 		getStylesheets().add("myStyle.css");
-		Button btn = new Button(itemName);
 		btn.getStyleClass().add("button");
-		btn.setPrefWidth(btn_width);
-		btn.setPrefHeight(btn_height);
 	}
+
 
 	/**
 	 * Set the button's behavior upon clicking
@@ -38,5 +38,15 @@ public class MenuItem extends Button {
 	 */
 	public void setClick(Runnable action) {
 		setOnMouseClicked(e -> action.run());
+	}
+
+
+	public static int getBtn_width() {
+		return btn_width;
+	}
+
+
+	public static int getBtn_height() {
+		return btn_height;
 	}
 }

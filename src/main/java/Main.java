@@ -4,27 +4,42 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 
+
+/** Class{@code Main} create a START screen with menu options
+ *
+ * @author Siyu Yao
+ * */
 public class Main extends Application {
 
 	/* main menu properties */
+
+	// screen properties
 	private final String GAME_TITLE = PropertiesSetter.getTitle();
-	private final int SCENE_HEIGHT = PropertiesSetter.getScreenHeight(); //
-	private final int SCENE_WIDTH = PropertiesSetter.getScreenWidth(); //
+	private final int SCENE_HEIGHT = PropertiesSetter.getScreenHeight(); //450
+	private final int SCENE_WIDTH = PropertiesSetter.getScreenWidth(); //600
+
+	// pop up window properties
 	private final int POP_UP_WIDTH = PropertiesSetter.getPopUpWidth();
 	private final int POP_UP_HEIGHT = PropertiesSetter.getPopUpHeight();
 
+	// each menu item's properties
+	private final int ITEM_SPACE = PropertiesSetter.getItemSpace();		// 20
+	private final int MENU_X = PropertiesSetter.getMenuX();		//190
+	private final int MENU_Y = PropertiesSetter.getMenuY();		//85
 
 
+	// array list of menu items
 	private final List<Pair<String, Runnable>> menuItems = Arrays.asList(
-			new Pair<String, Runnable>("START GAME", () -> initializeLevels()),
+			new Pair<String, Runnable>("START GAME", () -> initializeGame()),
 			new Pair<String, Runnable>("HOW TO PLAY", () -> showUserGuide()),
 			new Pair<String, Runnable>("SETTINGS", () -> showSetting()),
 			new Pair<String, Runnable>("HIGH SCORES", () -> showScores()),
@@ -33,10 +48,12 @@ public class Main extends Application {
 
 	private Pane menuRoot = new Pane();
 
+
 	private Stage primaryStage;
 
 	@Override
 	public void start(Stage primaryStage) {
+		menuRoot.getStylesheets().add("myStyle.css");
 		createMenu();
 		Scene menuScene = new Scene(menuRoot, SCENE_WIDTH, SCENE_HEIGHT);
 		menuScene.setFill(Color.SILVER);
@@ -57,39 +74,21 @@ public class Main extends Application {
 	/** @return a VBox layout to contain all the menu items*/
 	private VBox createMenuArea() {
 
-		// values defined in properties file
-		int ITEM_SPACE = PropertiesSetter.getItemSpace();		// 20
-		int MENU_X = PropertiesSetter.getMenuX();		//190
-		int MENU_Y = PropertiesSetter.getMenuY();		//85
-
 		// create a VBox to lay out the menu items
 		VBox menu = new VBox();
 		menu.setSpacing(ITEM_SPACE);	// spaces between each item
 		menu.setTranslateX(MENU_X);
 		menu.setTranslateY(MENU_Y);
 
+		// add the menu items to the menu
 		menuItems.forEach(menuItem -> {
-			MenuItem item = new MenuItem(menuItem.getKey());
+			MenuItem item = new MenuItem();
+			item.setText(menuItem.getKey());
+			item.setPrefWidth(MenuItem.getBtn_width());
+			item.setPrefHeight(MenuItem.getBtn_height());
 			item.setClick(menuItem.getValue());
 			menu.getChildren().add(item);
 		});
-
-//		MenuItem menuItems[] = {
-//				new MenuItem("START GAME"),
-//				new MenuItem("HOW TO PLAY"),
-//				new MenuItem("SETTINGS"),
-//				new MenuItem("HIGH SCORES"),
-//		};
-//
-//		menuItems[0].setOnMouseClicked(e -> initializeLevels());
-//		menuItems[1].setOnMouseClicked(e -> showUserGuide());
-//		menuItems[2].setOnMouseClicked(e -> showSetting());
-//		menuItems[3].setOnMouseClicked(e -> showScores());
-//
-//		for(MenuItem item : menuItems){
-//			menu.getChildren().add(item);
-//		}
-
 
 		return menu;
 	}
@@ -106,7 +105,6 @@ public class Main extends Application {
 		// create title set the style and add to pane
 		Text title = new Text(MENU_TITLE);
 		Pane container = new Pane();
-		container.getStylesheets().add("myStyle.css");
 		title.setId("menuTitle");
 		container.setTranslateX(MENU_TITLE_X);
 		container.setTranslateY(MENU_TITLE_Y);
@@ -116,7 +114,6 @@ public class Main extends Application {
 
 
 	private void showUserGuide() {
-		System.out.println("UG");
 		String UserGuide = PropertiesSetter.getUserGuide();
 		setUpDialogBox(UserGuide);
 	}
@@ -143,9 +140,9 @@ public class Main extends Application {
 	}
 
 
-	private void initializeLevels() {
-		System.out.println("play\n");
-		//todo: link to GameBoard
+	private void initializeGame() {
+		SwingUtilities.invokeLater(() -> new GameFrame().initialize());
+//		primaryStage.hide();
 	}
 
 
