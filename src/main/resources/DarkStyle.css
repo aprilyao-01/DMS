@@ -1,0 +1,74 @@
+/*Dark Mode*/
+/*C6DE41    2D6E7E  153B44  071C21*/
+
+@font-face{
+    src: url("fonts/Adventure.ttf");
+}
+
+
+
+.title{
+    -fx-font-size: 25pt;
+    -fx-text-alignment: left;
+    -fx-fill: #071C21;
+    -fx-font-family:  "Adventure";
+}
+
+.text{
+    -fx-font-size: 15pt;
+    -fx-text-alignment: left;
+    -fx-fill: #2D6E7E;
+    -fx-font-family:  "Adventure";
+}
+
+
+.check{
+    -fx-font-size: 15px;
+    -fx-text-alignment: left;
+    -fx-text-fill: #071C21;
+    -fx-font-family: "sans-serif";
+}
+
+
+
+.button{
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-text-fill: #2D6E7E;
+    -fx-background-color: #071C21;
+    -fx-background-radius: 10;
+    -fx-font-size: 15pt;
+    -fx-font-family: 'Adventure';
+    -fx-padding: 10;
+}
+
+
+.button: hover{
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-text-fill: #2D6E7E;
+    -fx-background-color: #071C21;
+    -fx-background-radius: 10;
+    -fx-font-size: 15pt;
+    -fx-font-family: 'Adventure';
+    -fx-padding: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: #C6DE41;
+    -fx-border-width: 3;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

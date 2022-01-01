@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane prefHeight="450.0" prefWidth="600.0" stylesheets="@myStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StartScreenView">
+<AnchorPane prefHeight="450.0" prefWidth="600.0" stylesheets="@LightStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StartScreenController">
    <children>
       <ImageView fitHeight="450.0" fitWidth="600.0">
          <image>
@@ -21,13 +21,13 @@
             <Font name="Adventure" size="30.0" />
          </font>
       </Text>
-      <VBox alignment="CENTER" layoutX="-27.0" layoutY="5.0" prefHeight="284.0" prefWidth="274.0" spacing="10.0" stylesheets="@myStyle.css" translateX="190.0" translateY="130.0">
+      <VBox alignment="CENTER" layoutX="-27.0" layoutY="5.0" prefHeight="284.0" prefWidth="274.0" spacing="10.0" stylesheets="@LightStyle.css" translateX="190.0" translateY="130.0">
          <children>
-            <Button mnemonicParsing="false" onMouseClicked="#initializeGame" prefHeight="5.0" prefWidth="200.0" stylesheets="@myStyle.css" text="START GAME" />
-            <Button mnemonicParsing="false" onMouseClicked="#showUserGuide" prefHeight="5.0" prefWidth="200.0" stylesheets="@myStyle.css" text="HOW TO PLAY" />
-            <Button mnemonicParsing="false" onMouseClicked="#showSetting" prefHeight="5.0" prefWidth="200.0" stylesheets="@myStyle.css" text="SETTING" />
-            <Button mnemonicParsing="false" onMouseClicked="#showScores" prefHeight="5.0" prefWidth="200.0" stylesheets="@myStyle.css" text="HIGH SCORES" />
-            <Button mnemonicParsing="false" onMouseClicked="#exit" prefHeight="5.0" prefWidth="200.0" stylesheets="@myStyle.css" text="EXIT" />
+            <Button mnemonicParsing="false" onMouseClicked="#initializeGame" prefHeight="5.0" prefWidth="200.0" stylesheets="@LightStyle.css" text="START GAME" />
+            <Button mnemonicParsing="false" onMouseClicked="#showUserGuide" prefHeight="5.0" prefWidth="200.0" stylesheets="@LightStyle.css" text="HOW TO PLAY" />
+            <Button mnemonicParsing="false" onMouseClicked="#showSetting" prefHeight="5.0" prefWidth="200.0" stylesheets="@LightStyle.css" text="SETTING" />
+            <Button mnemonicParsing="false" onMouseClicked="#showScores" prefHeight="5.0" prefWidth="200.0" stylesheets="@LightStyle.css" text="HIGH SCORES" />
+            <Button mnemonicParsing="false" onMouseClicked="#exit" prefHeight="5.0" prefWidth="200.0" stylesheets="@LightStyle.css" text="EXIT" />
          </children>
       </VBox>
    </children>

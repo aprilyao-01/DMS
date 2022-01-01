@@ -2,21 +2,14 @@
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.datatransfer.StringSelection;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
-import java.awt.event.WindowListener;
 
 // This class add the frame window on the screen
 public class GameFrame extends JFrame implements WindowFocusListener {
 
-	// this line too long, more like user guide instead of title
-	public static final String DEF_TITLE =
-			"Breakout Clone\t" +
-			"space = start/pause\t" +
-			"←/→ = move\t" +
-			"left/right\t" +
-			"esc = menu";
+
+	public final String GAME_TITLE = PropertiesSetter.getTitle();
 	private GameBoard gameBoard;
 	private boolean gaming;
 
@@ -33,7 +26,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
 	// initialize the frame
 	public void initialize(){
-		this.setTitle(DEF_TITLE);
+		this.setTitle(GAME_TITLE);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.pack();
 		this.autoLocate();
