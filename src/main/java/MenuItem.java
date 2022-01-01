@@ -8,12 +8,12 @@ import javafx.scene.control.Button;
  * @author Siyu Yao
  */
 
-public class MenuItem extends Button {
+public class MenuItem extends Button{
 
 
 	// item preset properties
-	private static final int btn_width = PropertiesSetter.getItemWidth();	//200
-	private static final int btn_height = PropertiesSetter.getItemHeight();	//5
+	private final int btn_width = PropertiesSetter.getItemWidth();	//200
+	private final int btn_height = PropertiesSetter.getItemHeight();	//5
 
 	/**
 	 * Make an item (button) for placement in the main menu
@@ -26,7 +26,7 @@ public class MenuItem extends Button {
 
 		// create the button and set the style
 		Button btn = new Button();
-		getStylesheets().add("myStyle.css");
+//		getStylesheets().add("myStyle.css");
 		btn.getStyleClass().add("button");
 	}
 
@@ -41,12 +41,10 @@ public class MenuItem extends Button {
 	}
 
 
-	public static int getBtn_width() {
-		return btn_width;
-	}
+	// Getter
+	public int getBtn_width() {return btn_width;}
 
-
-	public static int getBtn_height() {
+	public int getBtn_height() {
 		return btn_height;
 	}
 }

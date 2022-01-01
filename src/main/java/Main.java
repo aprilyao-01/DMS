@@ -1,15 +1,16 @@
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 
 import javax.swing.*;
-import java.awt.*;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -52,14 +53,17 @@ public class Main extends Application {
 	private Stage primaryStage;
 
 	@Override
-	public void start(Stage primaryStage) {
-		menuRoot.getStylesheets().add("myStyle.css");
-		createMenu();
-		Scene menuScene = new Scene(menuRoot, SCENE_WIDTH, SCENE_HEIGHT);
-		menuScene.setFill(Color.SILVER);
-		primaryStage.setScene(menuScene);
+	public void start(Stage primaryStage) throws IOException {
+//		menuRoot.getStylesheets().add("myStyle.css");
+//		createMenu();
 		this.primaryStage = primaryStage;
 		primaryStage.setTitle(GAME_TITLE);
+
+		Parent root = FXMLLoader.load(getClass().getResource("StartScreenView.fxml"));
+//		Scene menuScene = new Scene(menuRoot, SCENE_WIDTH, SCENE_HEIGHT);
+		Scene menuScene = new Scene(root, SCENE_WIDTH, SCENE_HEIGHT);
+//		menuScene.setFill(Color.SILVER);
+		primaryStage.setScene(menuScene);
 		primaryStage.show();
 	}
 
@@ -84,8 +88,8 @@ public class Main extends Application {
 		menuItems.forEach(menuItem -> {
 			MenuItem item = new MenuItem();
 			item.setText(menuItem.getKey());
-			item.setPrefWidth(MenuItem.getBtn_width());
-			item.setPrefHeight(MenuItem.getBtn_height());
+			item.setPrefWidth(item.getBtn_width());
+			item.setPrefHeight(item.getBtn_height());
 			item.setClick(menuItem.getValue());
 			menu.getChildren().add(item);
 		});
