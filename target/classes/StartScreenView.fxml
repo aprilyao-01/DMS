@@ -13,7 +13,7 @@
    <children>
       <ImageView fitHeight="450.0" fitWidth="600.0">
          <image>
-            <Image url="@imgs/start_back.jpg" />
+            <Image url="@imgs/background.jpg" />
          </image>
       </ImageView>
       <Text fill="#6f6dbd" layoutX="23.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="WELCOME TO THE BREAKOUT GAME!" wrappingWidth="554.21630859375">

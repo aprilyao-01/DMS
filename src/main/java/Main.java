@@ -4,8 +4,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 
 /** Class{@code Main} create a START screen with menu options
  *
@@ -17,8 +15,6 @@ public class Main extends Application {
 
 	// screen properties
 	private final String GAME_TITLE = PropertiesSetter.getTitle();
-	private final int SCENE_HEIGHT = PropertiesSetter.getScreenHeight(); //450
-	private final int SCENE_WIDTH = PropertiesSetter.getScreenWidth(); //600
 
 
 	private Stage startStage;

@@ -5,10 +5,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.Modality;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -38,6 +38,8 @@ public class StartScreenController {
 	private Scene scoreScene;
 	private Parent settingRoot;
 	private Parent scoreRoot;
+
+	@FXML private AnchorPane startPane;
 
     @FXML
     void exit(MouseEvent event) {
@@ -99,4 +101,6 @@ public class StartScreenController {
 	}
 
 	public Stage getStartStage() {return startStage;}
+
+	public AnchorPane getStartPane() {return startPane;}
 }
