@@ -1,3 +1,5 @@
+import javafx.stage.Stage;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -39,6 +41,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
 
 	public GameBoard(JFrame owner){
+//	public GameBoard(){
 		super();
 
 		strLen = 0;

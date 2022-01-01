@@ -1,5 +1,7 @@
 //package code;
 
+import javafx.stage.Stage;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowEvent;
@@ -16,7 +18,7 @@ public class DebugConsole extends JDialog implements WindowListener{
 	private Wall wall;
 
 
-	public DebugConsole(JFrame owner,Wall wall,GameBoard gameBoard){
+	public DebugConsole(JFrame owner, Wall wall, GameBoard gameBoard){
 
 		this.wall = wall;
 		this.owner = owner;

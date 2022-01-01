@@ -43,17 +43,13 @@ public class SettingsController {
 		if(radioButtonLight.isSelected()){
 			settingPane.getStylesheets().remove("DarkStyle.css");
 			settingPane.getStylesheets().add("LightStyle.css");
-			// todo: change start sceen change game screen
+			// todo: change start screen change game screen
 
 		} else {
 			settingPane.getStylesheets().remove("LightStyle.css");
 			settingPane.getStylesheets().add("DarkStyle.css");
+			// todo: change start screen change game screen
 		}
-
-
-
-
-
 	}
 
 

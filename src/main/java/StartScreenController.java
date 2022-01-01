@@ -1,4 +1,6 @@
 import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
+import javafx.embed.swing.SwingNode;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -26,18 +28,22 @@ public class StartScreenController {
 	private final int POP_UP_HEIGHT = PropertiesSetter.getPopUpHeight();
 
 	// different screens title
+	private final String GAME_TITLE = PropertiesSetter.getTitle();
 	private final String SETTING_TITLE = PropertiesSetter.getTitle() + " - Settings";
 	private final String SCORE_TITLE = PropertiesSetter.getTitle() + " - High Scores";
 
 
 	// different screens properties
-	private Stage settingStage;
 	private Stage startStage;
+	private Stage settingStage;
 	private Stage scoreStage;
+	private Stage gameStage;
 	private Scene settingScene;
 	private Scene scoreScene;
+	private Scene gameScene;
 	private Parent settingRoot;
 	private Parent scoreRoot;
+	private Parent gameRoot;
 
 	@FXML private AnchorPane startPane;
 
@@ -47,9 +53,33 @@ public class StartScreenController {
     }
 
     @FXML
-    void initializeGame(MouseEvent event) {
-//		primaryStage.hide();
-		SwingUtilities.invokeLater(() -> new GameFrame().initialize());
+    void initializeGame(MouseEvent event) throws IOException {
+////		primaryStage.hide();
+//		SwingUtilities.invokeLater(() -> new GameFrame().initialize());
+
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GameView.fxml"));
+
+		gameRoot = fxmlLoader.load();
+
+//		GameContronller gameContronller = fxmlLoader.getController();
+//		gameContronller.init();
+
+		GameFrame gameFrame = new GameFrame();
+		JFXPanel gamePanel = new JFXPanel();;
+
+		gameFrame.getContentPane().add(gamePanel);
+//		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GameView.fxml"));
+
+//		Parent gameRoot = fxmlLoader.load();
+		gameScene = new Scene(gameRoot);
+		gamePanel.setScene(gameScene);
+
+//		gameStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+//		gameStage.setTitle(GAME_TITLE);
+
+//		gameScene = new Scene(gameRoot);
+//		gameStage.setScene(gameScene);
+//		gameStage.show();
 
     }
 
@@ -70,6 +100,7 @@ public class StartScreenController {
     @FXML
     void showSetting(MouseEvent event) throws IOException {
 		settingRoot = FXMLLoader.load(getClass().getResource("SettingsView.fxml"));
+
 
 		settingStage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		settingStage.setTitle(SETTING_TITLE);
