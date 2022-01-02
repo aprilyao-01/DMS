@@ -37,7 +37,7 @@ public class Paddle {
 
 
 
-	private Paddle(Point ballPoint, int width, int height, Rectangle container) {
+	public Paddle(Point ballPoint, int width, int height, Rectangle container) {
 		this.ballPoint = ballPoint;
 		moveAmount = 0;
 		paddleFace = makeRectangle(width, height);
@@ -51,9 +51,9 @@ public class Paddle {
 		return  new Rectangle(p,new Dimension(width,height));
 	}
 
-//	public boolean impact(Ball b){
-//		return paddleFace.contains(b.getPosition()) && paddleFace.contains(b.down) ;
-//	}
+	public boolean impact(Ball b){
+		return paddleFace.contains(b.getPosition()) && paddleFace.contains(b.down) ;
+	}
 
 	public void move(){
 		double x = ballPoint.getX() + moveAmount;

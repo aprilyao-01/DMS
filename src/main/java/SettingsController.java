@@ -88,7 +88,7 @@ public class SettingsController {
 
     @FXML
     void saveSetting(MouseEvent event) {
-		// todo: save changes
+
 
     }
 

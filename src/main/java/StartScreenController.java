@@ -1,5 +1,4 @@
 import javafx.application.Platform;
-import javafx.embed.swing.JFXPanel;
 import javafx.embed.swing.SwingNode;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,7 +7,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -29,7 +27,7 @@ public class StartScreenController {
 	private final int POP_UP_HEIGHT = PropertiesSetter.getPopUpHeight();
 
 	// different screens title
-	private final String GAME_TITLE = PropertiesSetter.getTitle();
+	private final String LEVEL_TITLE = PropertiesSetter.getTitle() + " - Levels";
 	private final String SETTING_TITLE = PropertiesSetter.getTitle() + " - Settings";
 	private final String SCORE_TITLE = PropertiesSetter.getTitle() + " - High Scores";
 
@@ -38,13 +36,13 @@ public class StartScreenController {
 	private Stage startStage;
 	private Stage settingStage;
 	private Stage scoreStage;
-	private Stage gameStage;
+	private Stage levelStage;
 	private Scene settingScene;
 	private Scene scoreScene;
-	private Scene gameScene;
+	private Scene levelScene;
 	private Parent settingRoot;
 	private Parent scoreRoot;
-	private Parent gameRoot;
+	private Parent levelRoot;
 
 	@FXML private AnchorPane startPane;
 
@@ -54,31 +52,31 @@ public class StartScreenController {
     }
 
     @FXML
-    void initializeGame(MouseEvent event) throws IOException {
-////		primaryStage.hide();
-//		SwingUtilities.invokeLater(() -> new GameFrame().initialize());
+    void chooseLevel(MouseEvent event) throws IOException {
+	////		primaryStage.hide();
+	//		SwingUtilities.invokeLater(() -> new GameFrame().initialize());
 
-//		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GameView.fxml"));
-//
-//		gameRoot = fxmlLoader.load();
+	//		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GameView.fxml"));
+	//
+	//		gameRoot = fxmlLoader.load();
 
-//		GameContronller gameContronller = fxmlLoader.getController();
-//		gameContronller.init();
+	//		GameContronller gameContronller = fxmlLoader.getController();
+	//		gameContronller.init();
 
-//		GameFrame gameFrame = new GameFrame();
-//		JFXPanel gamePanel = new JFXPanel();;
-//
-//		gameFrame.getContentPane().add(gamePanel);
-////		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GameView.fxml"));
-//
-////		Parent gameRoot = fxmlLoader.load();
-//		gameScene = new Scene(gameRoot);
-//		gamePanel.setScene(gameScene);
+	//		GameFrame gameFrame = new GameFrame();
+	//		JFXPanel gamePanel = new JFXPanel();;
+	//
+	//		gameFrame.getContentPane().add(gamePanel);
+	////		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GameView.fxml"));
+	//
+	////		Parent gameRoot = fxmlLoader.load();
+	//		gameScene = new Scene(gameRoot);
+	//		gamePanel.setScene(gameScene);
 
 
-//		Parent root = FXMLLoader.load(getClass().getResource("StartScreenView.fxml"));
-//		Scene scene = new Scene(root);
-//		startStage.setScene(scene);
+	//		Parent root = FXMLLoader.load(getClass().getResource("StartScreenView.fxml"));
+	//		Scene scene = new Scene(root);
+	//		startStage.setScene(scene);
 
 
 
@@ -89,30 +87,38 @@ public class StartScreenController {
 //		gameStage.setScene(gameScene);
 //		gameStage.show();
 
-		final SwingNode swingNode = new SwingNode();
-		createAndSetSwingContent(swingNode);
+//		final SwingNode swingNode = new SwingNode();
+//		createAndSetSwingContent(swingNode);
+//
+//		Pane pane = new Pane();
+//		pane.getChildren().add(swingNode);
+//		gameStage.setScene(new Scene(pane, 600, 450));
+//		gameStage.show();
 
-		Pane pane = new Pane();
-		pane.getChildren().add(swingNode);
-		gameStage.setScene(new Scene(pane, 600, 450));
-		gameStage.show();
+		levelRoot = FXMLLoader.load(getClass().getResource("LevelView.fxml"));
 
+		levelStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		levelStage.setTitle(LEVEL_TITLE);
+
+		levelScene = new Scene(levelRoot);
+		levelStage.setScene(levelScene);
+		levelStage.show();
 
     }
 
 
-	private void createAndSetSwingContent(final SwingNode swingNode){
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-//				GameBoard gameBoard = new GameBoard();
-//				gameBoard
-				JPanel panel = new JPanel();
-				panel.add(new JButton("Click!"));
-				swingNode.setContent(panel);
-			}
-		});
-	}
+//	private void createAndSetSwingContent(final SwingNode swingNode){
+//		SwingUtilities.invokeLater(new Runnable() {
+//			@Override
+//			public void run() {
+////				GameBoard gameBoard = new GameBoard();
+////				gameBoard
+//				JPanel panel = new JPanel();
+//				panel.add(new JButton("Click!"));
+//				swingNode.setContent(panel);
+//			}
+//		});
+//	}
 
     @FXML
     void showScores(MouseEvent event) throws IOException {
@@ -131,7 +137,6 @@ public class StartScreenController {
     @FXML
     void showSetting(MouseEvent event) throws IOException {
 		settingRoot = FXMLLoader.load(getClass().getResource("SettingsView.fxml"));
-
 
 		settingStage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		settingStage.setTitle(SETTING_TITLE);
