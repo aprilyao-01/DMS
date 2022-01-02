@@ -1,4 +1,7 @@
-import javafx.stage.Stage;
+import component.balls.Ball;
+import component.bricks.Brick;
+import component.paddle.Paddle;
+import component.Wall;
 
 import javax.swing.*;
 import java.awt.*;
@@ -61,36 +64,36 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 		//initialize the first level
 		wall.nextLevel();
 
-		gameTimer = new Timer(10,e ->{
-			wall.move();
-			wall.findImpacts();
-			// add level message
-			message = String.format("Level: %d %n Bricks: %d Balls %d",
-									wall.getCurrentLevel(), wall.getBrickCount(),wall.getBallCount());
-			if(wall.isBallLost()){		// all boll used
-				if(wall.ballEnd()){
-					wall.wallReset();
-					message = "Game over";
-				}
-				wall.ballReset();
-				gameTimer.stop();
-			}
-			else if(wall.isDone()){
-				if(wall.hasLevel()){
-					message = "Go to Next Level";
-					gameTimer.stop();
-					wall.ballReset();
-					wall.wallReset();
-					wall.nextLevel();
-				}
-				else{
-					message = "ALL WALLS DESTROYED";
-					gameTimer.stop();
-				}
-			}
-
-			repaint();
-		});
+//		gameTimer = new Timer(10,e ->{
+//			wall.move();
+//			wall.findImpacts();
+//			// add level message
+//			message = String.format("Level: %d %n Bricks: %d Balls %d",
+//									wall.getCurrentLevel(), wall.getBrickCount(),wall.getBallCount());
+//			if(wall.isBallLost()){		// all boll used
+//				if(wall.ballEnd()){
+//					wall.wallReset();
+//					message = "Game over";
+//				}
+//				wall.ballReset();
+//				gameTimer.stop();
+//			}
+//			else if(wall.isDone()){
+//				if(wall.hasLevel()){
+//					message = "Go to Next Level";
+//					gameTimer.stop();
+//					wall.ballReset();
+//					wall.wallReset();
+//					wall.nextLevel();
+//				}
+//				else{
+//					message = "ALL WALLS DESTROYED";
+//					gameTimer.stop();
+//				}
+//			}
+//
+//			repaint();
+//		});
 
 	}
 
@@ -106,28 +109,28 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 	}
 
 
-	public void paint(Graphics g){
-
-		Graphics2D g2d = (Graphics2D) g;
-
-		clear(g2d);
-
-		g2d.setColor(Color.BLUE);
-		g2d.drawString(message,230,225);
-
-		drawBall(wall.ball,g2d);
-
-		for(Brick b : wall.bricks)
-			if(!b.isBroken())
-				drawBrick(b,g2d);
-
-		drawPlayer(wall.player,g2d);
-
-		if(showPauseMenu)
-			drawMenu(g2d);
-
-		Toolkit.getDefaultToolkit().sync();
-	}
+//	public void paint(Graphics g){
+//
+//		Graphics2D g2d = (Graphics2D) g;
+//
+//		clear(g2d);
+//
+//		g2d.setColor(Color.BLUE);
+//		g2d.drawString(message,230,225);
+//
+//		drawBall(wall.ball,g2d);
+//
+//		for(Brick b : wall.bricks)
+//			if(!b.isBroken())
+//				drawBrick(b,g2d);
+//
+//		drawPlayer(wall.player,g2d);
+//
+//		if(showPauseMenu)
+//			drawMenu(g2d);
+//
+//		Toolkit.getDefaultToolkit().sync();
+//	}
 
 	public void clear(Graphics2D g2d){
 		Color tmp = g2d.getColor();
@@ -136,7 +139,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 		g2d.setColor(tmp);
 	}
 
-	public void drawBrick(Brick brick,Graphics2D g2d){
+	public void drawBrick(Brick brick, Graphics2D g2d){
 		Color tmp = g2d.getColor();
 
 		g2d.setColor(brick.getInnerColor());
@@ -149,7 +152,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 		g2d.setColor(tmp);
 	}
 
-	public void drawBall(Ball ball,Graphics2D g2d){
+	public void drawBall(Ball ball, Graphics2D g2d){
 		Color tmp = g2d.getColor();
 
 		Shape s = ball.getBallFace();
@@ -257,12 +260,12 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 	@Override
 	public void keyPressed(KeyEvent e) {
 		int code=e.getKeyCode();
-		if(code==KeyEvent.VK_LEFT){
-			wall.player.moveLeft();
-		}
-		if(code==KeyEvent.VK_RIGHT){
-			wall.player.movRight();
-		}
+//		if(code==KeyEvent.VK_LEFT){
+//			wall.player.moveLeft();
+//		}
+//		if(code==KeyEvent.VK_RIGHT){
+//			wall.player.movRight();
+//		}
 		if(code==KeyEvent.VK_SPACE){
 			if(!showPauseMenu)
 				if(gameTimer.isRunning())
@@ -283,7 +286,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
 	@Override
 	public void keyReleased(KeyEvent keyEvent) {
-		wall.player.stop();
+//		wall.player.stop();
 	}
 
 	@Override

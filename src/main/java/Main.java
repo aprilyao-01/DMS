@@ -28,6 +28,8 @@ public class Main extends Application {
 			Parent root = FXMLLoader.load(getClass().getResource("StartScreenView.fxml"));
 			Scene scene = new Scene(root);
 			startStage.setScene(scene);
+			StartScreenController startScreenController = new StartScreenController();
+			startScreenController.setStartStage(startStage);
 			startStage.show();
 		} catch (Exception e){
 			e.printStackTrace();

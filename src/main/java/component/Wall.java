@@ -1,3 +1,13 @@
+package component;
+
+import component.balls.Ball;
+import component.balls.RubberBall;
+import component.bricks.Brick;
+import component.bricks.ClayBrick;
+import component.bricks.SteelBrick;
+import component.bricks.CementBrick;
+import component.paddle.Paddle;
+
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.Random;
@@ -90,7 +100,7 @@ public class Wall {
 		for(double y = brickHgt;i < tmp.length;i++, y += 2*brickHgt){
 			double x = (brickOnLine * brickLen) - (brickLen / 2);
 			p.setLocation(x,y);
-			tmp[i] = new Brick1(p,brickSize);
+			tmp[i] = new ClayBrick(p,brickSize);
 		}
 		return tmp;
 
@@ -140,7 +150,7 @@ public class Wall {
 	}
 
 	public void makeBall(Point2D ballPos){
-		ball = new Ball1(ballPos);
+		ball = new RubberBall(ballPos);
 	}
 
 	public Brick[][] makeLevels(Rectangle drawArea,int brickCount,int lineCount,double brickDimensionRatio){
@@ -285,9 +295,9 @@ public class Wall {
 
 	public Brick makeBrick(Point point, Dimension size, int type){
 		Brick out = switch (type) {
-			case CLAY -> new Brick1(point, size);
-			case STEEL -> new Brick2(point, size);
-			case CEMENT -> new Brick3(point, size);
+			case CLAY -> new ClayBrick(point, size);
+			case STEEL -> new SteelBrick(point, size);
+			case CEMENT -> new CementBrick(point, size);
 			default -> throw new IllegalArgumentException(String.format("Unknown Type:%d\n", type));
 		};
 		return  out;

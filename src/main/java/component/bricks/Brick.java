@@ -1,4 +1,6 @@
-//package code;
+package component.bricks;
+
+import component.balls.Ball;
 
 import java.awt.*;
 import java.awt.Point;
@@ -8,10 +10,10 @@ import java.util.Random;
 
 abstract public class Brick  {
 
-	public static final int MIN_CRACK = 1;
-	public static final int MAX_CRACK = 3;
-	public static final int DEF_CRACK_DEPTH = 1;
-	public static final int DEF_STEPS = 35;		// not used
+	public final int MIN_CRACK = 1;
+	public final int MAX_CRACK = 3;
+	public final int DEF_CRACK_DEPTH = 1;
+	public final int DEF_STEPS = 35;		// not used
 
 
 	public static final int UP_IMPACT = 100;
@@ -246,6 +248,8 @@ abstract public class Brick  {
 		strength--;
 		broken = (strength == 0);
 	}
+
+
 
 
 

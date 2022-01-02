@@ -1,4 +1,13 @@
+package component.paddle;
+
+import component.balls.Ball;
+
 import java.awt.*;
+
+/**
+ * This method implements the SINGLETON design pattern
+ *
+ * */
 
 // ball control panel
 public class Paddle {
@@ -6,6 +15,7 @@ public class Paddle {
 	// color of the paddle
 	public static final Color BORDER_COLOR = Color.GREEN.darker().darker();
 	public static final Color INNER_COLOR = Color.GREEN;
+
 
 	// default move distance per press
 	public static final int DEF_MOVE_AMOUNT = 5;
@@ -16,8 +26,18 @@ public class Paddle {
 	private int min;
 	private int max;
 
+	private static Paddle newPaddle = null;
 
-	public Paddle(Point ballPoint, int width, int height, Rectangle container) {
+	public static Paddle getPaddle(){
+		if(Paddle.newPaddle == null)
+//			Paddle.newPaddle = new Paddle();
+			System.out.println("todo");
+		return newPaddle;
+	}
+
+
+
+	private Paddle(Point ballPoint, int width, int height, Rectangle container) {
 		this.ballPoint = ballPoint;
 		moveAmount = 0;
 		paddleFace = makeRectangle(width, height);
@@ -31,9 +51,9 @@ public class Paddle {
 		return  new Rectangle(p,new Dimension(width,height));
 	}
 
-	public boolean impact(Ball b){
-		return paddleFace.contains(b.getPosition()) && paddleFace.contains(b.down) ;
-	}
+//	public boolean impact(Ball b){
+//		return paddleFace.contains(b.getPosition()) && paddleFace.contains(b.down) ;
+//	}
 
 	public void move(){
 		double x = ballPoint.getX() + moveAmount;

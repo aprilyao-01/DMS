@@ -1,4 +1,4 @@
-//package code;
+package component.bricks;//package code;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
@@ -7,9 +7,9 @@ import java.util.Random;
 
 
 // renamed the class to match "clay=1, steel=2, cement=3"
-public class Brick2 extends Brick {
+public class SteelBrick extends Brick {
 
-	private static final String NAME = "Steel Brick";
+	private static final String NAME = "Steel component.bricks.Brick";
 	private static final Color DEF_INNER = new Color(203, 203, 201);
 	private static final Color DEF_BORDER = DEF_INNER.darker().darker();		// original black doesn't look so harmonious
 	private static final int STEEL_STRENGTH = 2;	// as steel, it should have middle strength
@@ -19,7 +19,7 @@ public class Brick2 extends Brick {
 	private Shape brickFace;
 	private Crack crack;		// set cracks, make impact more visible to user
 
-	public Brick2(Point point, Dimension size){
+	public SteelBrick(Point point, Dimension size){
 		super(NAME,point,size,DEF_BORDER,DEF_INNER,STEEL_STRENGTH);
 		rnd = new Random();
 		crack = new Crack(DEF_CRACK_DEPTH,DEF_STEPS);

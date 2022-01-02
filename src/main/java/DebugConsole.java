@@ -1,6 +1,7 @@
 //package code;
 
-import javafx.stage.Stage;
+import component.balls.Ball;
+import component.Wall;
 
 import javax.swing.*;
 import java.awt.*;
@@ -77,8 +78,8 @@ public class DebugConsole extends JDialog implements WindowListener{
 	@Override
 	public void windowActivated(WindowEvent windowEvent) {
 		setLocation();
-		Ball b = wall.ball;
-		debugPanel.setValues(b.getSpeedX(),b.getSpeedY());
+//		Ball b = wall.ball;
+//		debugPanel.setValues(b.getSpeedX(),b.getSpeedY());
 	}
 
 	@Override

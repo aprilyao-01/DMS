@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -57,22 +58,29 @@ public class StartScreenController {
 ////		primaryStage.hide();
 //		SwingUtilities.invokeLater(() -> new GameFrame().initialize());
 
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GameView.fxml"));
-
-		gameRoot = fxmlLoader.load();
+//		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GameView.fxml"));
+//
+//		gameRoot = fxmlLoader.load();
 
 //		GameContronller gameContronller = fxmlLoader.getController();
 //		gameContronller.init();
 
-		GameFrame gameFrame = new GameFrame();
-		JFXPanel gamePanel = new JFXPanel();;
+//		GameFrame gameFrame = new GameFrame();
+//		JFXPanel gamePanel = new JFXPanel();;
+//
+//		gameFrame.getContentPane().add(gamePanel);
+////		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GameView.fxml"));
+//
+////		Parent gameRoot = fxmlLoader.load();
+//		gameScene = new Scene(gameRoot);
+//		gamePanel.setScene(gameScene);
 
-		gameFrame.getContentPane().add(gamePanel);
-//		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GameView.fxml"));
 
-//		Parent gameRoot = fxmlLoader.load();
-		gameScene = new Scene(gameRoot);
-		gamePanel.setScene(gameScene);
+//		Parent root = FXMLLoader.load(getClass().getResource("StartScreenView.fxml"));
+//		Scene scene = new Scene(root);
+//		startStage.setScene(scene);
+
+
 
 //		gameStage = (Stage)((Node)event.getSource()).getScene().getWindow();
 //		gameStage.setTitle(GAME_TITLE);
@@ -81,7 +89,30 @@ public class StartScreenController {
 //		gameStage.setScene(gameScene);
 //		gameStage.show();
 
+		final SwingNode swingNode = new SwingNode();
+		createAndSetSwingContent(swingNode);
+
+		Pane pane = new Pane();
+		pane.getChildren().add(swingNode);
+		gameStage.setScene(new Scene(pane, 600, 450));
+		gameStage.show();
+
+
     }
+
+
+	private void createAndSetSwingContent(final SwingNode swingNode){
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+//				GameBoard gameBoard = new GameBoard();
+//				gameBoard
+				JPanel panel = new JPanel();
+				panel.add(new JButton("Click!"));
+				swingNode.setContent(panel);
+			}
+		});
+	}
 
     @FXML
     void showScores(MouseEvent event) throws IOException {
@@ -125,6 +156,10 @@ public class StartScreenController {
 		Scene popUpScene = new Scene(dialogBox, POP_UP_WIDTH, POP_UP_HEIGHT);
 		infoPopUp.setScene(popUpScene);
 		infoPopUp.show();
+	}
+
+	public void setStartStage(Stage startStage) {
+		this.startStage = startStage;
 	}
 
 	public Stage getSettingStageStage() {
