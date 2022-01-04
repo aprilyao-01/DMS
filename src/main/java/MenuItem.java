@@ -1,11 +1,12 @@
 import javafx.scene.control.Button;
+import properties.PropertiesSetter;
 
 
 /**
  * Class{@code MenuItem} is used to specify the basic properties
  * and response events of each <b>Button</b> on the menu
  *
- * @author Siyu Yao
+ * @author
  */
 
 public class MenuItem extends Button{

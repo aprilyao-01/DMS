@@ -2,6 +2,7 @@ import component.balls.Ball;
 import component.bricks.Brick;
 import component.paddle.Paddle;
 import component.Wall;
+//import debug.DebugConsole;
 
 import javax.swing.*;
 import java.awt.*;
@@ -40,11 +41,11 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 	private Rectangle restartButtonRect;
 	private int strLen;
 
-	private DebugConsole debugConsole;
+//	private DebugConsole debugConsole;
 
 
-	public GameBoard(JFrame owner){
-//	public GameBoard(){
+//	public GameBoard(JFrame owner){
+	public GameBoard(){
 		super();
 
 		strLen = 0;
@@ -60,40 +61,40 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 		wall = new Wall(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),
 				30,3,6/2,new Point(300,430));
 
-		debugConsole = new DebugConsole(owner,wall,this);
+//		debugConsole = new DebugConsole(owner,wall,this);
 		//initialize the first level
 		wall.nextLevel();
 
-//		gameTimer = new Timer(10,e ->{
-//			wall.move();
-//			wall.findImpacts();
-//			// add level message
-//			message = String.format("Level: %d %n Bricks: %d Balls %d",
-//									wall.getCurrentLevel(), wall.getBrickCount(),wall.getBallCount());
-//			if(wall.isBallLost()){		// all boll used
-//				if(wall.ballEnd()){
-//					wall.wallReset();
-//					message = "Game over";
-//				}
-//				wall.ballReset();
-//				gameTimer.stop();
-//			}
-//			else if(wall.isDone()){
-//				if(wall.hasLevel()){
-//					message = "Go to Next Level";
-//					gameTimer.stop();
-//					wall.ballReset();
-//					wall.wallReset();
-//					wall.nextLevel();
-//				}
-//				else{
-//					message = "ALL WALLS DESTROYED";
-//					gameTimer.stop();
-//				}
-//			}
-//
-//			repaint();
-//		});
+		gameTimer = new Timer(10,e ->{
+			wall.move();
+			wall.findImpacts();
+			// add level message
+			message = String.format("Level: %d %n Bricks: %d Balls %d",
+									wall.getCurrentLevel(), wall.getBrickCount(),wall.getBallCount());
+			if(wall.isBallLost()){		// all boll used
+				if(wall.ballEnd()){
+					wall.wallReset();
+					message = "Game over";
+				}
+				wall.ballReset();
+				gameTimer.stop();
+			}
+			else if(wall.isDone()){
+				if(wall.hasLevel()){
+					message = "Go to Next Level";
+					gameTimer.stop();
+					wall.ballReset();
+					wall.wallReset();
+					wall.nextLevel();
+				}
+				else{
+					message = "ALL WALLS DESTROYED";
+					gameTimer.stop();
+				}
+			}
+
+			repaint();
+		});
 
 	}
 
@@ -109,28 +110,28 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 	}
 
 
-//	public void paint(Graphics g){
-//
-//		Graphics2D g2d = (Graphics2D) g;
-//
-//		clear(g2d);
-//
-//		g2d.setColor(Color.BLUE);
-//		g2d.drawString(message,230,225);
-//
-//		drawBall(wall.ball,g2d);
-//
-//		for(Brick b : wall.bricks)
-//			if(!b.isBroken())
-//				drawBrick(b,g2d);
-//
-//		drawPlayer(wall.player,g2d);
-//
-//		if(showPauseMenu)
-//			drawMenu(g2d);
-//
-//		Toolkit.getDefaultToolkit().sync();
-//	}
+	public void paint(Graphics g){
+
+		Graphics2D g2d = (Graphics2D) g;
+
+		clear(g2d);
+
+		g2d.setColor(Color.BLUE);
+		g2d.drawString(message,230,225);
+
+		drawBall(wall.ball,g2d);
+
+		for(Brick b : wall.bricks)
+			if(!b.isBroken())
+				drawBrick(b,g2d);
+
+		drawPlayer(wall.player,g2d);
+
+		if(showPauseMenu)
+			drawMenu(g2d);
+
+		Toolkit.getDefaultToolkit().sync();
+	}
 
 	public void clear(Graphics2D g2d){
 		Color tmp = g2d.getColor();
@@ -260,12 +261,12 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 	@Override
 	public void keyPressed(KeyEvent e) {
 		int code=e.getKeyCode();
-//		if(code==KeyEvent.VK_LEFT){
-//			wall.player.moveLeft();
-//		}
-//		if(code==KeyEvent.VK_RIGHT){
-//			wall.player.movRight();
-//		}
+		if(code==KeyEvent.VK_LEFT){
+			wall.player.moveLeft();
+		}
+		if(code==KeyEvent.VK_RIGHT){
+			wall.player.movRight();
+		}
 		if(code==KeyEvent.VK_SPACE){
 			if(!showPauseMenu)
 				if(gameTimer.isRunning())
@@ -280,7 +281,8 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 		}
 		if(code==KeyEvent.VK_F1){
 			if(e.isAltDown() && e.isShiftDown())
-				debugConsole.setVisible(true);
+//				debugConsole.setVisible(true);
+				System.out.println("hi");
 		}
 	}
 

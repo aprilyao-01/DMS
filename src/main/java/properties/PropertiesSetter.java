@@ -1,10 +1,12 @@
+package properties;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
 /**
- * Class {@code PropertiesSetter} is a static utility class for setting the game's properties.
+ * Class {@code properties.PropertiesSetter} is a static utility class for setting the game's properties.
  *
  * @author Siyu YAo
  * */

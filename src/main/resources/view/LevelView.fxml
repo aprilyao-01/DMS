@@ -7,12 +7,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="450.0" prefWidth="600.0" stylesheets="@LightStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="component.LevelController">
+<AnchorPane prefHeight="450.0" prefWidth="600.0" stylesheets="@../LightStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LevelController">
    <children>
       <ImageView fitHeight="450.0" fitWidth="600.0" pickOnBounds="true">
          <image>
-            <Image url="@imgs/background.jpg" />
+            <Image url="@../imgs/background.jpg" />
          </image>
       </ImageView>
       <Text layoutX="251.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="LEVELS" />
@@ -24,5 +23,6 @@
             <Button mnemonicParsing="false" onMouseClicked="#goLevel4" prefHeight="47.0" prefWidth="425.0" text="LEVEL 4" />
          </children>
       </VBox>
+      <Button layoutX="50.0" layoutY="32.0" mnemonicParsing="false" onMouseClicked="#back" prefHeight="10.0" prefWidth="70.0" text="BACK" />
    </children>
 </AnchorPane>

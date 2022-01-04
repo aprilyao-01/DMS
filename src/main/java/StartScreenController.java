@@ -1,5 +1,4 @@
 import javafx.application.Platform;
-import javafx.embed.swing.SwingNode;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -10,15 +9,15 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import properties.PropertiesSetter;
 
-import javax.swing.*;
 import java.io.IOException;
 
 
 /**Class {@code StartScreenController} is the controller of the FXML file with the same name
  * that controls what should be done when a button in it is clicked
  *
- * @author Siyu Yao
+ * @author
  * */
 public class StartScreenController {
 
@@ -95,7 +94,7 @@ public class StartScreenController {
 //		gameStage.setScene(new Scene(pane, 600, 450));
 //		gameStage.show();
 
-		levelRoot = FXMLLoader.load(getClass().getResource("LevelView.fxml"));
+		levelRoot = FXMLLoader.load(getClass().getResource("view/LevelView.fxml"));
 
 		levelStage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		levelStage.setTitle(LEVEL_TITLE);
@@ -123,7 +122,7 @@ public class StartScreenController {
     @FXML
     void showScores(MouseEvent event) throws IOException {
 		//todo: high scores
-		scoreRoot = FXMLLoader.load(getClass().getResource("SettingsView.fxml"));
+		scoreRoot = FXMLLoader.load(getClass().getResource("view/HighScoresView.fxml"));
 
 		scoreStage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scoreStage.setTitle(SCORE_TITLE);
@@ -136,7 +135,7 @@ public class StartScreenController {
 
     @FXML
     void showSetting(MouseEvent event) throws IOException {
-		settingRoot = FXMLLoader.load(getClass().getResource("SettingsView.fxml"));
+		settingRoot = FXMLLoader.load(getClass().getResource("view/SettingsView.fxml"));
 
 		settingStage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		settingStage.setTitle(SETTING_TITLE);

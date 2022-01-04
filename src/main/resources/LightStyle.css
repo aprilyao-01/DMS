@@ -57,6 +57,10 @@
     -fx-border-width: 3;
 }
 
+.label{
+    -fx-text-fill: #949CDF;
+    -fx-font-family: 'misterpixel';
+}
 
 
 

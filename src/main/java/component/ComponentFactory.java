@@ -18,7 +18,7 @@ import java.awt.geom.Point2D;
  *
  *
  * <p>
- * @author Siyu Yao
+ * @author
  * @version 1.0
  * @since 1.0
 // * @see

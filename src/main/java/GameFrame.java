@@ -1,5 +1,7 @@
 //package code;
 
+import properties.PropertiesSetter;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowEvent;
@@ -18,7 +20,8 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 		super();
 		gaming = false;
 		this.setLayout(new BorderLayout());
-		gameBoard = new GameBoard(this);
+//		gameBoard = new GameBoard(this);
+		gameBoard = new GameBoard();
 		this.add(gameBoard,BorderLayout.CENTER);
 		initialize();
 		this.addWindowFocusListener(this);

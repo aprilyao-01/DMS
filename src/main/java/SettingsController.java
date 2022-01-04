@@ -1,5 +1,3 @@
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,15 +6,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import properties.PropertiesSetter;
 
 import java.io.IOException;
-import java.util.ResourceBundle;
 
 public class SettingsController {
 
@@ -29,6 +25,7 @@ public class SettingsController {
 	private Scene startScene;
 	private Parent startRoot;
 
+
     @FXML private AnchorPane settingPane;
 	@FXML private CheckBox checkBoxBGM;
     @FXML private CheckBox checkBoxSoundEffect;
@@ -37,6 +34,7 @@ public class SettingsController {
     @FXML private RadioButton radioButtonDark;
 
 
+	private Settings setting = Settings.getCurrentSettings();
 
 	@FXML
 	void setColour(ActionEvent event){
@@ -45,7 +43,7 @@ public class SettingsController {
 			settingPane.getStylesheets().add("LightStyle.css");
 			// todo: change start screen change game screen
 
-		} else {
+		} else if(radioButtonDark.isSelected()){
 			settingPane.getStylesheets().remove("LightStyle.css");
 			settingPane.getStylesheets().add("DarkStyle.css");
 			// todo: change start screen change game screen
@@ -56,8 +54,9 @@ public class SettingsController {
 
     @FXML
     void BGM(MouseEvent event) {
+		// todo: add BGM
 		if(checkBoxBGM.isSelected()){
-			// todo: add music
+
 		}else{
 
 		}
@@ -66,8 +65,9 @@ public class SettingsController {
 
     @FXML
     void soundEffect(MouseEvent event) {
+		// todo: add sound effect
 		if(checkBoxSoundEffect.isSelected()){
-			// todo: add sound effect
+
 		}else{
 
 		}
@@ -76,7 +76,7 @@ public class SettingsController {
 
     @FXML
     void cancelSetting(MouseEvent event) throws IOException {
-		startRoot = FXMLLoader.load(getClass().getResource("StartScreenView.fxml"));
+		startRoot = FXMLLoader.load(getClass().getResource("view/StartScreenView.fxml"));
 
 		startStage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		startStage.setTitle(GAME_TITLE);
@@ -87,7 +87,34 @@ public class SettingsController {
     }
 
     @FXML
-    void saveSetting(MouseEvent event) {
+    void saveSetting(MouseEvent event) throws IOException {
+		if(radioButtonLight.isSelected()){
+			setting.setThemeColour(ThemeColour.Light);
+		}else{
+			setting.setThemeColour(ThemeColour.Dark);
+		}
+
+		if(checkBoxSoundEffect.isSelected()){
+			setting.setSoundEffect(true);
+		}else{
+			setting.setSoundEffect(false);
+		}
+
+		if(checkBoxBGM.isSelected()){
+			setting.setBGM(true);
+		}else{
+			setting.setBGM(false);
+		}
+
+
+		startRoot = FXMLLoader.load(getClass().getResource("view/StartScreenView.fxml"));
+
+		startStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		startStage.setTitle(GAME_TITLE);
+
+		startScene = new Scene(startRoot);
+		startStage.setScene(startScene);
+		startStage.show();
 
 
     }

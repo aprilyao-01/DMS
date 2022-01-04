@@ -1,13 +1,11 @@
-/*Light Mode*/
+/*Light Mode In Game*/
 /*CD5D7D    F6ECF0  A7C5EB  949CDF*/
 
 @font-face{
-    src: url("fonts/Adventure.ttf");
+    src: url("resources/fonts/misterpixel.ttf");
 }
-
-
-
-.title{
+ 
+/*.title{
     -fx-font-size: 25pt;
     -fx-text-alignment: left;
     -fx-fill: #949CDF;
@@ -27,7 +25,7 @@
     -fx-text-alignment: left;
     -fx-text-fill: #949CDF;
     -fx-font-family: "sans-serif";
-}
+}*/
 
 
 
@@ -38,7 +36,7 @@
     -fx-background-color: #949CDF;
     -fx-background-radius: 10;
     -fx-font-size: 15pt;
-    -fx-font-family: 'Adventure';
+    -fx-font-family: 'misterpixel';
     -fx-padding: 10;
 }
 
@@ -50,7 +48,7 @@
     -fx-background-color: #949CDF;
     -fx-background-radius: 10;
     -fx-font-size: 15pt;
-    -fx-font-family: 'Adventure';
+    -fx-font-family: 'misterpixel';
     -fx-padding: 10;
     -fx-border-radius: 10;
     -fx-border-color: #CD5D7D;

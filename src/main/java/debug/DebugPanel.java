@@ -1,4 +1,4 @@
-//package code;
+package debug;
 
 import component.Wall;
 
