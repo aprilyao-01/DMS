@@ -7,6 +7,8 @@ import component.bricks.ClayBrick;
 import component.bricks.SteelBrick;
 import component.bricks.CementBrick;
 import component.paddle.Paddle;
+import setting.Settings;
+import setting.SoundEffect;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
@@ -35,6 +37,24 @@ public class Wall {
 	private int brickCount;
 	private int ballCount;
 	private boolean ballLost;
+
+	private int score;
+
+	public void resetScore(){
+		this.score = 0;
+	}
+
+	public void addScore(int added){
+		this.score = this.score + added;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setCurrentLevel(int currentLevel) {
+		this.currentLevel = currentLevel;
+	}
 
 	public Wall(Rectangle drawArea, int brickCount, int lineCount, double brickDimensionRatio, Point ballPos){
 
@@ -168,23 +188,39 @@ public class Wall {
 	}
 
 	public void findImpacts(){
+		Settings settings = Settings.getCurrentSettings();
 		if(player.impact(ball)){
 			ball.reverseY();
-		}
+			if (settings.isSoundEffect()) {
+				SoundEffect.PADDLE_HIT.play();
+			}
+ 		}
 		else if(impactWall()){
 			/* for efficiency reverse is done into method impactWall
 			because for every brick program checks for horizontal and vertical impacts */
 			brickCount--;
+			if (settings.isSoundEffect()) {
+				SoundEffect.BRICK_HIT.play();
+			}
 		}
 		else if(impactBorder()) {
 			ball.reverseX();
+			if (settings.isSoundEffect()) {
+				SoundEffect.BORDER_HIT.play();
+			}
 		}
 		else if(ball.getPosition().getY() < area.getY()){
 			ball.reverseY();
+			if (settings.isSoundEffect()) {
+				SoundEffect.BORDER_HIT.play();
+			}
 		}
 		else if(ball.getPosition().getY() > area.getY() + area.getHeight()){
 			ballCount--;
 			ballLost = true;
+			if (settings.isSoundEffect()) {
+				SoundEffect.LOSE.play();
+			}
 		}
 	}
 
@@ -192,23 +228,39 @@ public class Wall {
 		for(Brick b : bricks){
 			switch (b.findImpact(ball)) {
 				//Vertical Impact
-				case Brick.UP_IMPACT -> {
+				case Brick.UP_IMPACT :{
 					ball.reverseY();
-					return b.setImpact(ball.down, Brick.Crack.UP);
+					boolean broken = b.setImpact(ball.down, Brick.Crack.UP);
+					if (broken) {
+						addScore(b.getScore());
+					}
+					return broken;
 				}
-				case Brick.DOWN_IMPACT -> {
+				case Brick.DOWN_IMPACT : {
 					ball.reverseY();
-					return b.setImpact(ball.up, Brick.Crack.DOWN);
+					boolean broken = b.setImpact(ball.up, Brick.Crack.DOWN);
+					if (broken) {
+						addScore(b.getScore());
+					}
+					return broken;
 				}
 
 				//Horizontal Impact
-				case Brick.LEFT_IMPACT -> {
+				case Brick.LEFT_IMPACT : {
 					ball.reverseX();
-					return b.setImpact(ball.right, Brick.Crack.RIGHT);
+					boolean broken = b.setImpact(ball.right, Brick.Crack.RIGHT);
+					if (broken) {
+						addScore(b.getScore());
+					}
+					return broken;
 				}
-				case Brick.RIGHT_IMPACT -> {
+				case Brick.RIGHT_IMPACT :{
 					ball.reverseX();
-					return b.setImpact(ball.left, Brick.Crack.LEFT);
+					boolean broken = b.setImpact(ball.left, Brick.Crack.LEFT);
+					if (broken) {
+						addScore(b.getScore());
+					}
+					return broken;
 				}
 			}
 		}
@@ -268,6 +320,7 @@ public class Wall {
 
 	public void nextLevel(){
 		if(hasLevel()){
+			System.out.println(currentLevel);
 			bricks = totalGameLevels[currentLevel++];
 			this.brickCount = bricks.length;
 			//todo: currentLevels score pop-up
@@ -294,11 +347,13 @@ public class Wall {
 	}
 
 	public Brick makeBrick(Point point, Dimension size, int type){
-		Brick out = switch (type) {
-			case CLAY -> new ClayBrick(point, size);
-			case STEEL -> new SteelBrick(point, size);
-			case CEMENT -> new CementBrick(point, size);
-			default -> throw new IllegalArgumentException(String.format("Unknown Type:%d\n", type));
+		Brick out;
+		 switch (type) {
+			case CLAY :
+				out = new ClayBrick(point, size); break;
+			case STEEL : out =  new SteelBrick(point, size);break;
+			case CEMENT : out = new CementBrick(point, size);break;
+			default :  throw new IllegalArgumentException(String.format("Unknown Type:%d\n", type));
 		};
 		return  out;
 	}

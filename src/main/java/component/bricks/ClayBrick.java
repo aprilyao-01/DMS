@@ -16,6 +16,7 @@ public class ClayBrick extends Brick {
 
 	public ClayBrick(Point point, Dimension size){
 		super(NAME,point,size,DEF_BORDER,DEF_INNER,CLAY_STRENGTH);
+		score = 10;
 	}
 
 	@Override

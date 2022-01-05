@@ -14,6 +14,7 @@ abstract public class Brick  {
 	public final int MAX_CRACK = 3;
 	public final int DEF_CRACK_DEPTH = 1;
 	public final int DEF_STEPS = 35;		// not used
+	protected int score;
 
 
 	public static final int UP_IMPACT = 100;
@@ -22,6 +23,9 @@ abstract public class Brick  {
 	public static final int RIGHT_IMPACT = 400;
 
 
+	public int getScore() {
+		return score;
+	}
 
 	public class Crack{
 

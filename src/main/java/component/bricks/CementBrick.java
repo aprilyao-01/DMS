@@ -21,6 +21,7 @@ public class CementBrick extends Brick {
 		super(NAME,point,size,DEF_BORDER,DEF_INNER,CEMENT_STRENGTH);
 		crack = new Crack(DEF_CRACK_DEPTH,DEF_STEPS);
 		brickFace = super.brickFace;
+		score = 5;
 	}
 
 	@Override

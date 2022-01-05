@@ -24,6 +24,7 @@ public class SteelBrick extends Brick {
 		rnd = new Random();
 		crack = new Crack(DEF_CRACK_DEPTH,DEF_STEPS);
 		brickFace = super.brickFace;
+		score = 15;
 	}
 
 
