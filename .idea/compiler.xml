@@ -11,4 +11,9 @@
       </profile>
     </annotationProcessing>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="scysy2-Breakout" options="--add-exports java.xml/com.sun.org.apache.bcel.internal.generic=ALL-UNNAMED --add-exports java.datatransfer/java.awt=scysy2.Breakout" />
+    </option>
+  </component>
 </project>

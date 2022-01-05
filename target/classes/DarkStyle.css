@@ -57,3 +57,19 @@
     -fx-border-color: #404B69;
     -fx-border-width: 3;
 }
+
+.label{
+    -fx-text-fill: #00818A;
+    -fx-font-family: "sans-serif";
+}
+
+
+.withBorder{
+    -fx-font-size: 25pt;
+    -fx-text-alignment: left;
+    -fx-fill: #00818A;
+    -fx-font-family:  "Adventure";
+    -fx-stroke:#404B69;
+    -fx-stroke-width: 2px;
+}
+

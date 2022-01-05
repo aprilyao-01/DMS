@@ -4,6 +4,16 @@ import java.awt.*;
 import java.awt.Point;
 
 // renamed the class to match "clay=1, steel=2, cement=3"
+/**
+ * <h1>Class: {@link ClayBrick}</h1>
+ * one type of brick, extends abstract class {@code Brick}
+ *
+ * @version 1.1
+ * @since 1.0
+ * @see CementBrick
+ * @see ClayBrick
+ * @see SteelBrick
+ */
 public class ClayBrick extends Brick {
 
 	private static final String NAME = "Clay component.bricks.Brick";
@@ -16,6 +26,7 @@ public class ClayBrick extends Brick {
 
 	public ClayBrick(Point point, Dimension size){
 		super(NAME,point,size,DEF_BORDER,DEF_INNER,CLAY_STRENGTH);
+		m_score = 5;	// if clay brick in broken, get 5 scores
 	}
 
 	@Override

@@ -4,7 +4,15 @@ import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 
-public class RubberBall extends Ball {
+/**
+ * <h1>Class: {@link RubberBall}</h1>
+ * one type of ball, extends abstract class {@code Ball}
+ *
+ *
+ * @version 1.1
+ * @since 1.0
+ * @see Ball
+ */public class RubberBall extends Ball {
 
 
 	private static final String NAME = "Rubber component.balls.Ball";

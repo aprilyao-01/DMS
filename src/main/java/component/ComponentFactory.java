@@ -2,7 +2,6 @@ package component;
 
 
 import component.balls.RubberBall;
-import component.bricks.Brick;
 import component.bricks.CementBrick;
 import component.bricks.ClayBrick;
 import component.bricks.SteelBrick;
@@ -13,9 +12,6 @@ import java.awt.geom.Point2D;
 
 /**
  * The class {@code ComponentFactory} is used as a factory to create different components to {@link }
- *
- * including
- *
  *
  * <p>
  * @author
@@ -53,5 +49,6 @@ public class ComponentFactory {
 		return new RubberBall(center);
 
 	}
+
 
 }

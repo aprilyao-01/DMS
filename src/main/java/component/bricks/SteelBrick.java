@@ -7,6 +7,16 @@ import java.util.Random;
 
 
 // renamed the class to match "clay=1, steel=2, cement=3"
+/**
+ * <h1>Class: {@link SteelBrick}</h1>
+ * one type of brick, extends abstract class {@code Brick}
+ *
+ * @version 1.1
+ * @since 1.0
+ * @see CementBrick
+ * @see ClayBrick
+ * @see SteelBrick
+ */
 public class SteelBrick extends Brick {
 
 	private static final String NAME = "Steel component.bricks.Brick";
@@ -24,6 +34,7 @@ public class SteelBrick extends Brick {
 		rnd = new Random();
 		crack = new Crack(DEF_CRACK_DEPTH,DEF_STEPS);
 		brickFace = super.brickFace;
+		m_score = 10;		// if Steel brick in broken, get 10 scores
 	}
 
 

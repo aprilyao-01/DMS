@@ -59,9 +59,18 @@
 
 .label{
     -fx-text-fill: #949CDF;
-    -fx-font-family: 'misterpixel';
+     -fx-font-family: "sans-serif";
 }
 
+.withBorder{
+    -fx-font-size: 25pt;
+    -fx-text-alignment: left;
+    -fx-fill: #949CDF;
+    -fx-font-family:  "Adventure";
+    -fx-stroke:#CD5D7D;
+    -fx-stroke-width: 2px;
+
+}
 
 
 

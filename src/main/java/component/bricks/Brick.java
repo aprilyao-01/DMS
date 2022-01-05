@@ -8,12 +8,23 @@ import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;
 import java.util.Random;
 
+/**
+ * <h1>Class: {@link Brick}</h1>
+ * an abstract class of the bricks, defined how bricks conten.
+ *
+ *
+ * @version 1.1
+ * @since 1.0
+ * @see CementBrick
+ * @see ClayBrick
+ * @see SteelBrick
+ */
 abstract public class Brick  {
 
-	public final int MIN_CRACK = 1;
-	public final int MAX_CRACK = 3;
 	public final int DEF_CRACK_DEPTH = 1;
 	public final int DEF_STEPS = 35;		// not used
+	/** the different scores the hit the bricks can get*/
+	protected int m_score;
 
 
 	public static final int UP_IMPACT = 100;
@@ -22,7 +33,15 @@ abstract public class Brick  {
 	public static final int RIGHT_IMPACT = 400;
 
 
+	/** the different scores the hit the bricks can get
+	 * @return the scores the hit this brick can get
+	 * */
+	public int getScore() {return m_score;}
 
+
+	/** if the bricks be hit crack shows
+	 *
+	 * */
 	public class Crack{
 
 		private static final int CRACK_SECTIONS = 3;
@@ -187,6 +206,28 @@ abstract public class Brick  {
 	private boolean broken;
 
 
+	// accessor methods
+	public abstract Shape getBrick();
+
+
+	public Color getBorderColor(){
+		return  border;
+	}
+
+	public Color getInnerColor(){
+		return inner;
+	}
+
+	 /**
+     * This is the constructor of Brick
+     *
+     * @param name brick's type
+     * @param pos brick's position
+     * @param size brick's size
+	 * @param inner brick's inner color
+     * @param border brick's border color
+	  * @param strength brick's strength
+     */
 	public Brick(String name, Point pos,Dimension size,Color border,Color inner,int strength){
 		rnd = new Random();
 		broken = false;
@@ -198,8 +239,14 @@ abstract public class Brick  {
 
 	}
 
+
 	protected abstract Shape makeBrickFace(Point pos,Dimension size);
 
+	/** she the brick's impact if be hit
+	 * @param  point the ball's hit position
+	 * @param dir impact's direction
+	 * @return if the brick be impacted
+	 * */
 	public  boolean setImpact(Point2D point , int dir){
 		if(broken)
 			return false;
@@ -207,43 +254,43 @@ abstract public class Brick  {
 		return  broken;
 	}
 
-	public abstract Shape getBrick();
 
 
-
-	public Color getBorderColor(){
-		return  border;
-	}
-
-	public Color getInnerColor(){
-		return inner;
-	}
-
-
+	/** find if the brick is impacted
+	 * @param  b the ball
+	 * @return the impact direction
+	 * */
 	public final int findImpact(Ball b){
 		if(broken)
 			return 0;
 		int out  = 0;
-		if(brickFace.contains(b.right))
+		if(brickFace.contains(b.getM_right()))
 			out = LEFT_IMPACT;
-		else if(brickFace.contains(b.left))
+		else if(brickFace.contains(b.getM_left()))
 			out = RIGHT_IMPACT;
-		else if(brickFace.contains(b.up))
+		else if(brickFace.contains(b.getM_up()))
 			out = DOWN_IMPACT;
-		else if(brickFace.contains(b.down))
+		else if(brickFace.contains(b.getM_down()))
 			out = UP_IMPACT;
 		return out;
 	}
 
+	/** find if the brick is impacted
+	 * @return if it's broken
+	 * */
 	public final boolean isBroken(){
 		return broken;
 	}
 
+	/** repair the brick
+	 * */
 	public void repair() {
 		broken = false;
 		strength = fullStrength;
 	}
 
+	/** if the brick is impacted, the strength of the brick cut down
+	 * */
 	public void impact(){
 		strength--;
 		broken = (strength == 0);
