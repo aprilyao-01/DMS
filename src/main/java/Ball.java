@@ -16,6 +16,7 @@ abstract public class Ball {
 	private Color border;
 	private Color inner;
 
+	// the original speed of the ball
 	private int speedX;
 	private int speedY;
 
@@ -78,11 +79,11 @@ abstract public class Ball {
 
 	public void reverseX(){
 		speedX *= -1;
-	}
+	}		// Xspeed after bounce
 
 	public void reverseY(){
 		speedY *= -1;
-	}
+	}		// Yspeed after bounce
 
 	public Color getBorderColor(){
 		return border;

@@ -24,9 +24,12 @@ public class DebugPanel extends JPanel {
 
 		initialize();
 
+		// todo: add confirm button
+
 		skipLevel = makeButton("Skip Level",e -> wall.nextLevel());
 		resetBalls = makeButton("Reset Balls",e -> wall.resetBallCount());
 
+		// todo: slider don't have a name or label display on the screen
 		ballXSpeed = makeSlider(-4,4,e -> wall.setBallXSpeed(ballXSpeed.getValue()));
 		ballYSpeed = makeSlider(-4,4,e -> wall.setBallYSpeed(ballYSpeed.getValue()));
 

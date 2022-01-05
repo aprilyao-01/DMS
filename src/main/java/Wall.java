@@ -4,9 +4,9 @@ import java.util.Random;
 
 public class Wall {
 
-	public static final int GAME_LEVELS_COUNT = 4;    // levels of the game, rename as: GAME_LEVELS_COUNT
+	public static final int GAME_LEVELS_COUNT = 4;    // totalGameLevels of the game, rename as: GAME_LEVELS_COUNT
 
-	// different level of walls
+	// different evel of walls
 	private static final int CLAY = 1;
 	private static final int STEEL = 2;
 	private static final int CEMENT = 3;
@@ -18,8 +18,8 @@ public class Wall {
 	Ball ball;
 	Paddle player;
 
-	private Brick[][] levels;
-	private int level;
+	private Brick[][] totalGameLevels;
+	private int currentLevel;
 
 	private Point startPoint;
 	private int brickCount;
@@ -30,8 +30,8 @@ public class Wall {
 
 		this.startPoint = new Point(ballPos);
 
-		levels = makeLevels(drawArea,brickCount,lineCount,brickDimensionRatio);
-		level = 0;
+		totalGameLevels = makeLevels(drawArea,brickCount,lineCount,brickDimensionRatio);
+		currentLevel = 0;
 
 		ballCount = 3;
 		ballLost = false;
@@ -40,6 +40,8 @@ public class Wall {
 
 		makeBall(ballPos);
 		int speedX,speedY;
+
+		// let system set the original ball speed randomly
 		do{
 			speedX = rnd.nextInt(5) - 2;
 		}while(speedX == 0);
@@ -57,13 +59,14 @@ public class Wall {
 	}
 
 	public Brick[] makeSingleTypeLevel(Rectangle drawArea, int brickCnt, int lineCnt, double brickSizeRatio, int type){
-		// if brickCount is not divisible by line count,brickCount is adjusted to the biggest multiple of lineCount smaller then brickCount
+		/* if brickCount is not divisible by line count,
+		brickCount is adjusted to the biggest multiple of lineCount smaller then brickCount */
 		brickCnt -= brickCnt % lineCnt;
 
-		int brickOnLine = brickCnt / lineCnt;
+		int brickOnLine = brickCnt / lineCnt;		// one line of bricks
 
-		double brickLen = drawArea.getWidth() / brickOnLine;
-		double brickHgt = brickLen / brickSizeRatio;
+		double brickLen = drawArea.getWidth() / brickOnLine;	// each brick's length in one line
+		double brickHgt = brickLen / brickSizeRatio;			// each brick's height
 
 		brickCnt += lineCnt / 2;
 
@@ -94,7 +97,8 @@ public class Wall {
 	}
 
 	public Brick[] makeChessboardLevel(Rectangle drawArea, int brickCnt, int lineCnt, double brickSizeRatio, int typeA, int typeB){
-		// if brickCount is not divisible by line count, brickCount is adjusted to the biggest multiple of lineCount smaller then brickCount
+		/* if brickCount is not divisible by line count,
+		brickCount is adjusted to the biggest multiple of lineCount smaller then brickCount */
 		brickCnt -= brickCnt % lineCnt;
 
 		int brickOnLine = brickCnt / lineCnt;
@@ -158,7 +162,8 @@ public class Wall {
 			ball.reverseY();
 		}
 		else if(impactWall()){
-			// for efficiency reverse is done into method impactWall because for every brick program checks for horizontal and vertical impacts
+			/* for efficiency reverse is done into method impactWall
+			because for every brick program checks for horizontal and vertical impacts */
 			brickCount--;
 		}
 		else if(impactBorder()) {
@@ -205,12 +210,16 @@ public class Wall {
 		return ((p.getX() < area.getX()) ||(p.getX() > (area.getX() + area.getWidth())));
 	}
 
-	public int getBrickCount(){
+	public int getBrickCount() {
 		return brickCount;
 	}
 
 	public int getBallCount(){
 		return ballCount;
+	}
+
+	public int getCurrentLevel(){
+		return currentLevel;
 	}
 
 	public boolean isBallLost(){
@@ -248,12 +257,18 @@ public class Wall {
 	}
 
 	public void nextLevel(){
-		bricks = levels[level++];
-		this.brickCount = bricks.length;
+		if(hasLevel()){
+			bricks = totalGameLevels[currentLevel++];
+			this.brickCount = bricks.length;
+			//todo: currentLevels score pop-up
+		} else{
+			System.out.println("WINNER\n");
+			//todo: final score pop-up
+		}
 	}
 
 	public boolean hasLevel(){
-		return level < levels.length;
+		return currentLevel < totalGameLevels.length;
 	}
 
 	public void setBallXSpeed(int s){

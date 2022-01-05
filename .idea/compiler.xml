@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Breakout" />
+        <module name="scysy2-Breakout" />
       </profile>
     </annotationProcessing>
   </component>
