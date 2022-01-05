@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="scorePane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../LightStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ScoreInfoController">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="651.0" pickOnBounds="true">
+         <image>
+            <Image url="@../imgs/wall.jpg" />
+         </image>
+      </ImageView>
+      <Button layoutX="240.0" layoutY="333.0" mnemonicParsing="false" onMouseClicked="#ok" prefWidth="150.0" text="OK" />
+      <Text layoutX="116.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="withBorder" text="PLAYER NAME" />
+      <Text layoutX="116.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="withBorder" text="PLAYER SCORE" />
+   </children>
+</AnchorPane>
