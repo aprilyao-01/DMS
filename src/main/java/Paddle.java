@@ -1,6 +1,6 @@
 import java.awt.*;
 
-
+// ball control panel
 public class Paddle {
 
 	// color of the paddle

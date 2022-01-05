@@ -11,7 +11,7 @@ abstract public class Brick  {
 	public static final int MIN_CRACK = 1;
 	public static final int MAX_CRACK = 3;
 	public static final int DEF_CRACK_DEPTH = 1;
-	public static final int DEF_STEPS = 35;
+	public static final int DEF_STEPS = 35;		// not used
 
 
 	public static final int UP_IMPACT = 100;

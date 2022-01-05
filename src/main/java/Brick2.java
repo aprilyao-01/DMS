@@ -11,13 +11,13 @@ public class Brick2 extends Brick {
 
 	private static final String NAME = "Steel Brick";
 	private static final Color DEF_INNER = new Color(203, 203, 201);
-	private static final Color DEF_BORDER = DEF_INNER.darker().darker().darker();		// original black doesn't look so harmonious
+	private static final Color DEF_BORDER = DEF_INNER.darker().darker();		// original black doesn't look so harmonious
 	private static final int STEEL_STRENGTH = 2;	// as steel, it should have middle strength
 	private static final double STEEL_PROBABILITY = 0.4;
 
 	private Random rnd;
 	private Shape brickFace;
-	private Crack crack;		// set crack, more visible for user
+	private Crack crack;		// set cracks, make impact more visible to user
 
 	public Brick2(Point point, Dimension size){
 		super(NAME,point,size,DEF_BORDER,DEF_INNER,STEEL_STRENGTH);

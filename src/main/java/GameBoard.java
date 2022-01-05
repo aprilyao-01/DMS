@@ -20,7 +20,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
 	private static final Color BG_COLOR = Color.WHITE;
 
-	private Timer gameTimer;
+	private Timer gameTimer;		// todo: Timer not exactly used
 
 	private Wall wall;
 
@@ -61,7 +61,9 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 		gameTimer = new Timer(10,e ->{
 			wall.move();
 			wall.findImpacts();
-			message = String.format("Bricks: %d Balls %d",wall.getBrickCount(),wall.getBallCount());
+			// add level message
+			message = String.format("Level: %d %n Bricks: %d Balls %d",
+									wall.getCurrentLevel(), wall.getBrickCount(),wall.getBallCount());
 			if(wall.isBallLost()){		// all boll used
 				if(wall.ballEnd()){
 					wall.wallReset();
@@ -108,7 +110,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 		clear(g2d);
 
 		g2d.setColor(Color.BLUE);
-		g2d.drawString(message,250,225);
+		g2d.drawString(message,230,225);
 
 		drawBall(wall.ball,g2d);
 
