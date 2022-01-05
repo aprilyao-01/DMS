@@ -1,0 +1,5 @@
+component\bricks\Brick$Crack.class
+component\Wall.class
+component\balls\Ball.class
+component\bricks\Brick.class
+component\paddle\Paddle.class
